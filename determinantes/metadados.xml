@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recurso>
+    <titulo>Determinantes e Áreas</titulo>
+    <descricao>Este software permite aos alunos interpretarem geometricamente o conceito de determinantes de matrizes 2×2, aproximando-se da deﬁnição de determinantes de matrizes como forma de medir volumes de paralelepípedos.</descricao>
+    <estado>finalizado</estado>
+	<imagem>apresentacao.jpg</imagem>
+	<tipo>Animação e Simulação.</tipo>
+	<objetivos>Veriﬁcar a relação entre áreas e determinantes; Investigar como as operações elementares com linhas de matrizes afetam a área de paralelogramos representados por estas matrizes.</objetivos>
+	<observacoes>É necessário plugin Flash 9.0 ou mais recente e máquina Java 1.6 ou mais recente.</observacoes>
+	<nivel>Ensino Médio</nivel>
+	<componente>Matemática</componente>
+	<temas>Geometria e Medidas</temas>
+	<autores>Marcelo Firer</autores>
+	<palavras_chaves>Unicamp, Projeto M³, software educacional, matemática, matrizes, determinantes, área, paralelogramo</palavras_chaves>
+	<assunto>Matrizes, determinantes; Geometria Plana, áreas.</assunto>
+</recurso>
+
+
+
+

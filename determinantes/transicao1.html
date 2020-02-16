@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"  xml:lang = "pt-br"  lang = "pt-br">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+		<link rel="stylesheet" type="text/css" href="css/curiosidade_transicao.css" media="screen, projection" title="normal"/>
+		<link rel="alternate stylesheet" type="text/css" href="css/curiosidade_transicao2.css" media="screen, projection" title="grande"/>
+		
+		<link rel="stylesheet" type="text/css" href="css/popup.css" media="screen, projection" />
+		<link rel="stylesheet" type="text/css" href="css/notas.css" media="screen, projection" />
+		<link rel="stylesheet" type="text/css" href="css/bloco.css" media="screen, projection" />
+		<link rel="stylesheet" type="text/css" href="css/calculadora.css" media="screen, projection" />
+
+		
+		<script type="text/javascript" src="scripts/protoaculous.js"></script>
+		<script type="text/javascript" src="scripts/AC_RunActiveContent.js"></script>
+		<script type="text/javascript" src="scripts/popup.js"></script>
+		<script type="text/javascript" src="scripts/notas.js"></script>
+		<script type="text/javascript" src="scripts/bloco.js"></script>
+		<script type="text/javascript" src="scripts/calculadora.js"></script>
+		<script type="text/javascript" src="scripts/interface_grande.js"></script>
+		<script type="text/javascript" src="scripts/rolagem_grande.js"></script>
+		
+		<script type="text/javascript" src="scripts/referencias.js"></script>
+		<script type="text/javascript" src="scripts/curiosidades.js"></script>
+		
+		<script type="text/javascript" src="scripts/conteudo_introducao.js"></script>
+		<script type="text/javascript" src="scripts/determinantes.js"></script>
+
+		<script type="text/javascript">
+			var PosicaoAtual = {Atividade: 0, Parte: 0};
+			var atividadeFeita = new Array();
+			var atividadeComecada = new Array();
+			var nomeSoft = "determinantes";
+			var salva = false;
+			Event.observe(document, 'flash:SalvaLocal', function(){
+				salva = true;
+					setResp('transicao_1',3);
+				
+				if (getResp('atividade_2') == 3){
+					atividadeFeita.push(2);
+				} else if (getResp('atividade_2') == 2){
+					atividadeComecada.push(2);
+				}
+				
+				if (getResp('atividade_3') == 3){
+					atividadeFeita.push(3);
+				} else if (getResp('atividade_3') == 2){
+					atividadeComecada.push(3);
+				}
+				
+				if (getResp('atividade_4') == 3){
+					atividadeFeita.push(4);
+				} else if (getResp('atividade_4') == 2){
+					atividadeComecada.push(4);
+				}
+				
+			});
+			
+			Event.observe(window, 'load', function(){
+				tenta_executar();
+			});
+			
+			function tenta_executar(){
+				if(salva){
+					for (a=0; a < atividadeFeita.length; a++)
+					{
+						if (atividadeFeita[a] == 2 || atividadeFeita[a] == 3 || atividadeFeita[a] == 4)
+						{
+							$('atividade'+atividadeFeita[a]).addClassName('ja_feita');
+							$('atividade'+atividadeFeita[a]).removeClassName('aberta');
+							$('atividade'+atividadeFeita[a]).removeClassName('comecada');
+							
+							var concluida = new Element('div', {className: 'concluida'}).insert('Atividade já concluída.');
+							$('pai_atividade'+atividadeFeita[a]).insert(concluida);
+						}
+					}
+					for (a=0; a < atividadeComecada.length; a++)
+					{
+						if (atividadeComecada[a] == 2 || atividadeComecada[a] == 3 || atividadeComecada[a] == 4)
+						{
+							$('atividade'+atividadeComecada[a]).addClassName('comecada');
+							$('atividade'+atividadeComecada[a]).removeClassName('aberta');
+							$('atividade'+atividadeComecada[a]).removeClassName('ja_feita');
+							
+							var concluida = new Element('div', {className: 'concluida'}).insert('Atividade já iniciada.');
+							$('pai_atividade'+atividadeComecada[a]).insert(concluida);
+						}
+					}
+				}else{
+					window.setTimeout(tenta_executar, 200);
+				}
+			}	
+		</script>
+		<title>Determinantes</title>
+	</head>
+	<body onunload="">
+		<div id="container">
+			<div id="cabecalho">
+				<div id="onde_estou">
+					<div class="transicao">&nbsp;</div>
+					<h1>Determinantes</h1> <img src="img_layout/setinha-cabecalho.gif" alt=""/> <h2>Propriedades do Determinante</h2>
+				</div>
+				<div id="logo"></div>
+				<div id="links">
+					<a href="mapa.html">Mapa</a>
+					<a href="introducao.html">Introdução</a>
+					<a href="index.html">Início</a>
+				</div>
+				<br class="limpador" />
+			</div>
+			
+			<!-- deve ficar vazio mesmo, é só pra se adptar ao layout e não precisar de outro css -->
+			<ul id="curiosidades"></ul>
+			
+			<div id="principal">
+				<div id="conteudo">
+						<!-- SalvaLocal -->
+					<div class="salva_local">
+						<object id="SalvaLocal" name="SalvaLocal" type="application/x-shockwave-flash" data="applets/SalvaLocal.swf" width="1" height="1">
+						   <param name="menu" value="false" />
+						   <param name="movie" value="applets/SalvaLocal.swf" />
+						</object>
+					</div>
+					<div class="texto">
+						<p>Na atividade anterior, foi examinada a associação entre paralelogramos e matrizes 2x2. Você deve ter notado que, para paralelogramos com vértices no primeiro quadrante, se um dos lados estiver sobre o eixo X, então a área do paralelogramo será igual ao determinante da matriz associada. Mas será que essa igualdade ocorre para outros tipos de paralelogramos?</p>
+						<p>No quadro abaixo há um paralelogramo. Sua matriz associada e o valor do seu determinante são calculados automaticamente. Movendo o ponto azul, você pode girar o paralelogramo em torno do vértice na origem (0,0). Mas isso não muda o tamanho dos lados. Sendo assim, o  paralelogramo possui a mesma área, mas pode ser colocado em outras posições.</p>
+						<p>Observação: Os valores mostrados das coordenadas estão arredondados para uma casa decimal, mas o cáculo do determinante usa os valores não arredondados.</p>	
+					  <br class="limpador" />
+						<div class="a_esquerda" style="border: 1px dashed #CCC;" >
+								<applet name="ggbApplet" code="geogebra.GeoGebraApplet" codebase="./" archive="jars/geogebra.jar" width="519" height="300" MAYSCRIPT>
+												<param name="filename" value="applets/girar_paralelogramo.ggb" />
+												<param name="framePossible" value="false" />
+												<param name="showResetIcon" value="false" />
+												<param name="enableRightClick" value="false" />
+												<param name="showMenuBar" value="false" />
+												<param name="showToolBar" value="false" />
+												<param name="showToolBarHelp" value="false" />
+												<param name="showAlgebraInput" value="false" />
+												<param name="language" value="pt" />
+												<param name="enableShiftDragZoom" value="false" />
+													Sorry, the GeoGebra Applet could not be started. Please make sure that Java 1.4.2 (or later) is installed and active in your browser (<a href="http://java.sun.com/getjava">Click here to install Java now</a>)
+								</applet>
+						</div>
+						<br class="limpador" />
+						<br class="limpador" />
+						<p>Note que, à medida que você gira o paralelogramo, a matriz que descreve os vértices vermelhos muda, mas o valor do determinante não.  Assim, observa-se que a relação entre determinante e área, observada anteriormente, aparentemente vale para qualquer tipo de paralelogramo com um dos vértices na origem.</p>
+						<p>Para verificar se essa propriedade realmente se aplica a todos os casos de paralelogramo, acesse as atividades abaixo, e veja como as principais propriedades de determinantes podem ser interpretadas geometricamente.</p>
+						
+						<div class="atividade">
+							<div id="pai_atividade2" class="espacador">
+								<div class="descricao"><br></div>
+								<div class="qual">
+									<div id="atividade2" class="numero_atividade aberta"><a href="atividade2_parte1.html">2</a></div>
+									<div class="titulo"><h1>Produto por escalar</h1></div>
+								</div>
+								<br class="limpador" />
+								<div class="descricao">Nesta atividade você poderá verificar se essa relação preserva a propriedade da "multiplicação por escalar" dos determinantes.</div>
+								<br class="limpador" />
+							</div>
+						</div>
+						
+						<div class="atividade">
+							<div id="pai_atividade3" class="espacador">
+								<div class="descricao"><br /></div>
+								<div class="qual">
+									<div id="atividade3" class="numero_atividade aberta"><a href="atividade3_parte1.html">3</a></div>
+									<div class="titulo"><h1>Soma de linhas</h1></div>
+									
+								</div>
+								<br class="limpador" />
+								<div class="descricao">Nesta atividade você poderá verificar se essa relação preserva a propriedade da "soma de linhas" dos determinantes.</div>
+								<br class="limpador" />
+							</div>
+						</div>
+						
+						<div class="atividade">
+							<div id="pai_atividade4" class="espacador">
+								<div class="descricao"> <br></div>
+								<div class="qual">
+									<div id="atividade4" class="numero_atividade aberta"><a href="atividade4_parte1.html">4</a></div>
+									<div class="titulo"><h1>O sinal do Determinante</h1></div>
+								</div>
+								<br class="limpador" />
+								<div class="descricao">Nesta atividade você poderá verificar o comportamento do sinal dos determinantes.</div>
+								<br class="limpador" />
+							</div>
+						</div>
+					
+					</div>
+							
+						<br class="limpador" />					
+						<br class="limpador" />											
+			</div>
+			<br class="limpador" />
+			<div id="rodape">
+				<a target="blank"; href="http://m3.mat.br">Sobre o Matemática Multimídia</a>
+			</div>
+		</div>
+		<div id="associado"></div>
+		<div id="ferramentas">
+			<a href="javascript:;" onclick="return false;" id="link_notas"><span class="escondido">referencias</span></a>
+			<a href="javascript:;" onclick="return false;" id="link_bloco"><span class="escondido">bloco de notas</span></a>
+			<a href="javascript:;" id="link_calculadora" onclick="javascript:calculadora();"><span class="escondido">calculadora</span></a>
+			<a href="javascript:setActiveStyleSheet('grande');" id="link_acessibilidade"><span class="escondido">acessibilidade</span></a>
+		</div>
+		<div id="calc" class="escondido"></div>
+</html>
+	</body>
