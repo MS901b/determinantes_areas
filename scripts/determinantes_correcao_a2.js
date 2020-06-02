@@ -7,7 +7,7 @@ Event.observe(document, 'flash:SalvaLocal', function(ev){
 	if ((getResp('atividade_2') == 3)&&(getResp('atividade_3') == 3)&&(getResp('atividade_4') == 3)){
 		setResp('transicao_1', 3);
 	}
-	
+
 	Event.observe('link_continuar', 'focus', function(evento){
 		if(($('link_continuar').className) == 'ativado'){
 			setResp('atividade_2',3);
@@ -24,7 +24,7 @@ Event.observe(window, 'load', function(){
 	if ((getResp('atividade_2') == 3)&&(getResp('atividade_3') == 3)&&(getResp('atividade_4') == 3)){
 		setResp('transicao_1', 3);
 	}
-	
+
 	Event.observe('link_continuar', 'focus', function(evento){
 		if(($('link_continuar').className) == 'ativado'){
 			setResp('atividade_2',3);
@@ -35,16 +35,16 @@ Event.observe(window, 'load', function(){
 Event.observe(window, 'load', function(){
 	adicionaEsperando({Parte: 0, Questao:'parte1_q1', Item: 0});
 	adicionaEsperando({Parte: 0, Questao:'parte1_q1', Item: 1});
-	
+
 	adicionaEsperando({Parte: 0, Questao:'parte1_q2', Item: 0});
 	adicionaEsperando({Parte: 0, Questao:'parte1_q2', Item: 1});
-	
+
 	$('valor_inicial').removeClassName('desabilitada');
 	$('eixo1_a2').removeAttribute('disabled');
 	$('eixo2_a2').removeAttribute('disabled');
 	$('eixo3_a2').removeAttribute('disabled');
 	$('eixo4_a2').removeAttribute('disabled');
-	
+
 	if(getResp('eixo1_a2') != 'undefined'){
 		$('eixo1_a2').value = getResp('eixo1_a2');
 	}
@@ -63,7 +63,7 @@ Event.observe(window, 'load', function(){
 	if(getResp('a2_parte1_q1_a_12') != 'undefined'){
 		$('parte1_q1_a_12').value = getResp('a2_parte1_q1_a_12');
 	}
-	
+
 	if(getResp('a2_parte1_q2_a_11') != 'undefined'){
 		$('parte1_q2_a_11').value = getResp('a2_parte1_q2_a_11');
 	}
@@ -76,73 +76,73 @@ Event.observe(window, 'load', function(){
 	if(getResp('a2_parte1_q2_a_22') != 'undefined'){
 		$('parte1_q2_a_22').value = getResp('a2_parte1_q2_a_22');
 	}
-	
+
 	if(getResp('a2_parte1_q1_b') != 'undefined'){
 		$('parte1_q1_b').value = getResp('a2_parte1_q1_b');
 	}
 	if(getResp('a2_parte1_q2_b') != 'undefined'){
 		$('parte1_q2_b').value = getResp('a2_parte1_q2_b');
 	}
-	if(getResp('a2p3_box') != 'undefined'){
+	if(getResp('a2p3_box') != 'undefined' && getResp('a2p3_box') != null){
 		$('parte1_q3_a_' + getResp('a2p3_box')).setChecked(true);
 	}
-	
+
 	Event.observe('eixo1_a2', 'change', function(evento){
 			validar_numeros_limites('eixo1_a2',0,300);
 			if ($('eixo1_a2').value != ""){
 				setResp('eixo1_a2',$('eixo1_a2').value);
 			}
-		});	
-		
+		});
+
 		Event.observe('eixo2_a2', 'change', function(evento){
 			validar_numeros_limites('eixo2_a2',0,300);
 			if ($('eixo2_a2').value != ""){
 				setResp('eixo2_a2',$('eixo2_a2').value);
 			}
 		});
-		
+
 		Event.observe('eixo3_a2', 'change', function(evento){
 			validar_numeros_limites('eixo3_a2',0,300);
 			if ($('eixo3_a2').value != ""){
 				setResp('eixo3_a2',$('eixo3_a2').value);
 			}
 		});
-		
+
 		Event.observe('eixo4_a2', 'change', function(evento){
 			validar_numeros_limites('eixo4_a2',0,300);
 			if ($('eixo4_a2').value != ""){
 				setResp('eixo4_a2',$('eixo4_a2').value);
 			}
 		});
-		
+
 		Event.observe('parte1_q1_a_11', 'change', function(evento){
 			validar_numeros('parte1_q1_a_11');
 			if ($('parte1_q1_a_11').value != ""){
 				setResp('a2_parte1_q1_a_11',$('parte1_q1_a_11').value);
 			}
 		});
-		
+
 		Event.observe('parte1_q1_a_12', 'change', function(evento){
 			validar_numeros('parte1_q1_a_12');
 			if ($('parte1_q1_a_12').value != ""){
 				setResp('a2_parte1_q1_a_12',$('parte1_q1_a_12').value);
 			}
 		});
-		
+
 		Event.observe('parte1_q2_a_21', 'change', function(evento){
 			validar_numeros('parte1_q2_a_21');
 			if ($('parte1_q2_a_21').value != ""){
 				setResp('a2_parte1_q2_a_21',$('parte1_q2_a_21').value);
 			}
 		});
-		
+
 		Event.observe('parte1_q2_a_22', 'change', function(evento){
 			validar_numeros('parte1_q2_a_22');
 			if ($('parte1_q2_a_22').value != ""){
 				setResp('a2_parte1_q2_a_22',$('parte1_q2_a_22').value);
 			}
 		});
-		
+
 		Event.observe('link_continuar', 'focus', function(evento){
 			if(($('link_continuar').className) == 'ativado'){
 				setResp('atividade_2',3);
@@ -151,8 +151,8 @@ Event.observe(window, 'load', function(){
 				}
 			}
 		});
-		
-		
+
+
 	})
 
 function corrige_a2_p3_q_1(valor){
@@ -226,14 +226,14 @@ x1 = x1.replace(/,/i,".");
 y1 = y1.replace(/,/i,".");
 x2 = x2.replace(/,/i,".");
 y2 = y2.replace(/,/i,".");
-($('eixo1_a2').value) = x1; 
+($('eixo1_a2').value) = x1;
 ($('eixo2_a2').value) = y1;
 ($('eixo3_a2').value) = x2;
 ($('eixo4_a2').value) = y2;
 
 	if (($('eixo1_a2').value == "")||($('eixo2_a2').value == "")||($('eixo3_a2').value == "")||($('eixo4_a2').value == "")){
-		
-		var Perg =  
+
+		var Perg =
 		{
 			conteudo: 'Foi preenchida alguma coordenada inválida.',
 			layout: ['seta_baixo','direita'],
@@ -243,7 +243,7 @@ y2 = y2.replace(/,/i,".");
 			// Veja que essa função deve estar definida, ou ser definida nesse exato momento (como no exemplo "pede2")
 			respostas: [{sim: 'Ok'}]
 		};
-		
+
 		var tmp = new PopupCallback($('link_valor_inicial'), Perg.conteudo,Perg.layout, Perg.largura, Perg.callback, Perg.respostas);
 		tmp.abre();
 		Event.stopObserving($('link_valor_inicial'),'click');
@@ -274,8 +274,8 @@ y2 = y2.replace(/,/i,".");
 		yMax++;
 		applet.setCoordSystem(-1, xMax, -1, yMax);
 	}
-	
-	
+
+
 	$('valor_inicial').addClassName('desabilitada');
 	$('eixo1_a2').writeAttribute({disabled: 'disabled'});
 	$('eixo2_a2').writeAttribute({disabled: 'disabled'});
@@ -285,11 +285,11 @@ y2 = y2.replace(/,/i,".");
 	setResp('eixo2_a2',$('eixo2_a2').value);
 	setResp('eixo3_a2',$('eixo3_a2').value);
 	setResp('eixo4_a2',$('eixo4_a2').value);
-	
-	
+
+
 	removeEsperando({Parte: 0, Questao:'parte1_q1', Item: 0});
 	removeEsperando({Parte: 0, Questao:'parte1_q1', Item: 1});
-	
+
 	removeEsperando({Parte: 0, Questao:'parte1_q2', Item: 0});
 	removeEsperando({Parte: 0, Questao:'parte1_q2', Item: 1});
 	$('link_valor_inicial').hide();
@@ -305,10 +305,10 @@ function unset_inicial()
 	$('eixo2_a2').removeAttribute('disabled');
 	$('eixo3_a2').removeAttribute('disabled');
 	$('eixo4_a2').removeAttribute('disabled');
-	
+
 	adicionaEsperando({Parte: 0, Questao:'parte1_q1', Item: 0});
 	adicionaEsperando({Parte: 0, Questao:'parte1_q1', Item: 1});
-	
+
 	adicionaEsperando({Parte: 0, Questao:'parte1_q2', Item: 0});
 	adicionaEsperando({Parte: 0, Questao:'parte1_q2', Item: 1});
 	$('link_valor_inicial').show();
@@ -334,5 +334,3 @@ function funcao_pede()
 
 	}
 }
-
-
