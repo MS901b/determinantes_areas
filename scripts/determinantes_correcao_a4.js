@@ -32,11 +32,11 @@ Event.observe(window, 'load', function(){
 			$('parte1_q1_a_' + getResp('a3_box_parte1_q1')).setChecked(true);
 		}
 
-		if(getResp('a3_box_parte1_q2') != 'undefined' && getResp('a3_box_parte1_q2') != null)){
+		if(getResp('a3_box_parte1_q2') != 'undefined' && getResp('a3_box_parte1_q2') != null){
 			$('parte1_q2_a_' + getResp('a3_box_parte1_q2')).setChecked(true);
 		}
 
-		if(getResp('a3_box_parte1_q3') != 'undefined' && getResp('a3_box_parte1_q3') != null)){
+		if(getResp('a3_box_parte1_q3') != 'undefined' && getResp('a3_box_parte1_q3') != null){
 			$('parte1_q3_a_' + getResp('a3_box_parte1_q3')).setChecked(true);
 		}
 
