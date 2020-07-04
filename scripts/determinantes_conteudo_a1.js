@@ -25,7 +25,7 @@ var Questoes =
 					tipo: 'input',
 					corrigir: corrige_q_2_a,
 					depois: 'cm²',
-					enunciado: 'Considerando que os triangulos são triângulos retângulos e os seus lados têm 2 cm, qual é a área do polígono original?',
+					enunciado: 'Considerando que os triangulos são triângulos retângulos e cada lado tem 2 cm, qual é a área do polígono original?',
 					msgErro: 'A área de um retângulo é: base * altura.',
 					msgAjuda: 'Não é necessário digitar a unidade de medida.'
 				}
