@@ -293,7 +293,7 @@ Event.observe(window, 'load', function(){
 
 function corrige_q_1_a(valor)
 {
-	$('myCanvas').reset();
+	reset();
 	return true;
 }
 
