@@ -294,7 +294,7 @@ Event.observe(window, 'load', function(){
 function corrige_q_1_a(valor)
 {
 	reset();
-	return true;
+	return [true];
 }
 
 function corrige_q_2_a(valor)
