@@ -26,13 +26,6 @@ shapes.push( {x:170, y:195, line:75, mirror:false} );
 shapes.push( {x:170, y:195, line:75, mirror:true} );
 shapes.push( {x:245, y:195, line:75, mirror:false} );
 shapes.push( {x:245, y:195, line:75, mirror:true} );
-//Adicionais
-shapes.push( {x:10, y:10, line:75, mirror:false} );
-shapes.push( {x:10, y:100, line:75, mirror:true} );
-shapes.push( {x:10, y:115, line:75, mirror:false} );
-shapes.push( {x:10, y:195, line:75, mirror:true} );
-shapes.push( {x:10, y:210, line:75, mirror:false} );
-shapes.push( {x:10, y:300, line:75, mirror:true} );
 
 // drag related vars
 var isDragging=false;
@@ -40,8 +33,6 @@ var startX,startY;
 
 // hold the index of the shape being dragged (if any)
 var selectedShapeIndex;
-//var numberElements=shapes.length;
-var numberElements=6;
 
 // draw the shapes on the canvas
 drawAll();
@@ -53,20 +44,12 @@ c.onmouseup=handleMouseUp;
 c.onmouseout=handleMouseOut;
 c.ondblclick=handleMousedblclick;
 
-//Altera o número de elementos
-function setNumberElements() {
-  var d=document.getElementById("idSelect");
-  numberElements = d.options[d.selectedIndex].text;
-  if (numberElements == "Numero de figuras:") numberElements = 6;
-  drawAll();
-}
-
 //Retorna a posição inicial
 function reset() {
   var ix = 170;
   var iy = 120;
   var iyy = 10;
-  for(var i=0;i<numberElements;i++){
+  for(var i=0;i<shapes.length;i++){
       var shape=shapes[i];
       if (i == 2) {
         iy += 75;
@@ -76,22 +59,11 @@ function reset() {
         ix += 75;
         shape.x = ix;
         shape.y = iy;
-      } else if (i <= 5) {
+      } else {
         shape.x = ix;
         shape.y = iy;
-      } else {
-        shape.x = 10;
-        if (i % 2 == 1) {
-          shape.y = iyy+90;
-          iyy += 105;
-        } else {
-          shape.y = iyy;
-        }
       }
   }
-  numberElements = 6;
-  var d=document.getElementById("idSelect");
-  d.selectedIndex = 0;
   drawAll();
 }
 
@@ -152,7 +124,7 @@ function haveANeighborInside(i) {
 
 //Redefini as posições dos objetos quando estiverem proximos
 function rearrange() {
-  for(var i=0;i<numberElements;i++){
+  for(var i=0;i<shapes.length;i++){
     if(i==selectedShapeIndex)   continue;
     if (haveANeighborUp(i)) {
       shapes[selectedShapeIndex].x = shapes[i].x;
@@ -220,7 +192,7 @@ function handleMouseDown(e){
     startY=parseInt(e.clientY-offsetY);
     // test mouse position against all shapes
     // post result if mouse is in a shape
-    for(var i=0;i<numberElements;i++){
+    for(var i=0;i<shapes.length;i++){
         if(isMouseInShape(startX,startY,shapes[i])){
             // the mouse is inside this shape
             // select this shape
@@ -291,7 +263,7 @@ function handleMousedblclick(e) {
   startY=parseInt(e.clientY-offsetY);
   // test mouse position against all shapes
   // post result if mouse is in a shape
-  for(var i=0;i<numberElements;i++){
+  for(var i=0;i<shapes.length;i++){
       if(isMouseInShape(startX,startY,shapes[i])){
           if(shapes[i].mirror==false) {
             shapes[i].mirror=true;
@@ -308,7 +280,7 @@ function handleMousedblclick(e) {
 function drawAll(){
     ctx.clearRect(0,0,cw,ch);
     var color = 'red';
-    for(var i=0;i<numberElements;i++){
+    for(var i=0;i<shapes.length;i++){
         var shape=shapes[i];
         if(shape.mirror==false){
             // it's a triangle
