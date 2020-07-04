@@ -2,9 +2,9 @@
 var xmlQ5resp = [ '','','' ];
 document.observe("dom:loaded", function()
 {
-	/* exemplo de como habilitar as partes 
+	/* exemplo de como habilitar as partes
 	   tem que lembrar de comentar este trecho pro software oficial */
-	 
+
 });
 Event.observe(window, 'load', function(){
 	BlocoNotas = new Blocao();
@@ -28,11 +28,11 @@ document.observe('dom:afterPermiteContinuar', function(event) {
 
 Event.observe(window, 'load', function(){
 	if (PosicaoAtual.Parte == 0){
-		if (flag){			
+		if (flag){
 			if (getResp('atividade_1') != 3){
 				setResp('atividade_1',2);
 			}
-			
+
 			if(getResp('parte1_q2_a') != 'undefined'){
 				$('parte1_q2_a').value = getResp('parte1_q2_a');
 			}
@@ -44,7 +44,7 @@ Event.observe(window, 'load', function(){
 			});
 		}
 	}
-	
+
 	if (PosicaoAtual.Parte == 1){
 		if (flag){
 			if(getResp('parte2_q4_a') != 'undefined'){
@@ -71,12 +71,12 @@ Event.observe(window, 'load', function(){
 		$('eixo2').removeAttribute('disabled');
 		$('eixo3').removeAttribute('disabled');
 		$('eixo4').removeAttribute('disabled');
-		
+
 		$('link_continuar').removeClassName('ativado');
-		
+
 		if (flag){
 
-			
+
 			setResp('eixo1',$('eixo1').value);
 			setResp('eixo2',$('eixo2').value);
 			setResp('eixo3',$('eixo3').value);
@@ -85,43 +85,43 @@ Event.observe(window, 'load', function(){
 			$('eixo2').value = getResp('eixo2');
 			$('eixo3').value = getResp('eixo3');
 			$('eixo4').value = getResp('eixo4');
-			
+
 			Event.observe('eixo1', 'change', function(evento){
 				validar_numeros_limites('eixo1',0,10);
 				if ($('eixo1').value != ""){
 					setResp('eixo1',$('eixo1').value);
 				}
-			});	
-			
+			});
+
 			Event.observe('eixo2', 'change', function(evento){
 				validar_numeros_limites('eixo2',0,10);
 				if ($('eixo2').value != ""){
 					setResp('eixo2',$('eixo2').value);
 				}
 			});
-			
+
 			Event.observe('eixo3', 'change', function(evento){
 				validar_numeros_limites('eixo3',0,10);
 				if ($('eixo3').value != ""){
 					setResp('eixo3',$('eixo3').value);
 				}
 			});
-			
+
 			Event.observe('eixo4', 'change', function(evento){
 				validar_numeros_limites('eixo4',0,10);
 				if ($('eixo4').value != ""){
 					setResp('eixo4',$('eixo4').value);
 				}
-			});	
+			});
 		}
 	}
-	
+
 	if (PosicaoAtual.Parte == 3){
-		var posicao = {Parte: 3, Questao: 'parte4_q5', Item:0};	
+		var posicao = {Parte: 3, Questao: 'parte4_q5', Item:0};
 		PegaQuestao(posicao).seleciona();
-	
+
 		if ($('parte4_q5_a_11')){$('parte4_q5_a_11').value = "";
-		setResp('parte4_q5_a_11',$('parte4_q5_a_11').value);		
+		setResp('parte4_q5_a_11',$('parte4_q5_a_11').value);
 		Event.observe('parte4_q5_a_11', 'change', function(evento){
 			validar_numeros('parte4_q5_a_11');
 			if ($('parte4_q5_a_11').value != ""){
@@ -130,7 +130,7 @@ Event.observe(window, 'load', function(){
 		});
 		}
 		if ($('parte4_q5_b_11')){$('parte4_q5_b_11').value = "";
-		setResp('parte4_q5_b_11',$('parte4_q5_b_11').value);		
+		setResp('parte4_q5_b_11',$('parte4_q5_b_11').value);
 		Event.observe('parte4_q5_b_11', 'change', function(evento){
 			validar_numeros('parte4_q5_b_11');
 			if ($('parte4_q5_b_11').value != ""){
@@ -140,7 +140,7 @@ Event.observe(window, 'load', function(){
 		}
 		if ($('parte4_q5_c_11')){
 			$('parte4_q5_c_11').value = "";
-			setResp('parte4_q5_c_11',$('parte4_q5_c_11').value);		
+			setResp('parte4_q5_c_11',$('parte4_q5_c_11').value);
 			Event.observe('parte4_q5_c_11', 'change', function(evento){
 				validar_numeros('parte4_q5_c_11');
 				if ($('parte4_q5_c_11').value != ""){
@@ -148,7 +148,7 @@ Event.observe(window, 'load', function(){
 				}
 			});
 		}
-		
+
 		Event.observe('eixo1a', 'input:change', function(evento){
 			var applet = document.ggbApplet;
 			applet.setFixed("B", false);
@@ -161,7 +161,7 @@ Event.observe(window, 'load', function(){
 			Responder_applet_p4();
 			}
 		});
-		
+
 		Event.observe('eixo1c', 'input:change', function(evento){
 			var applet = document.ggbApplet;
 			applet.setFixed("C", false);
@@ -174,11 +174,11 @@ Event.observe(window, 'load', function(){
 			Responder_applet_p4();
 			}
 		});
-		
+
 		Event.observe('eixo1d', 'input:change', function(evento){
 			var applet = document.ggbApplet;
 			applet.setFixed("C", false);
-			applet.setCoords("C", $('eixo1c').getValue(), $('eixo1d').getValue());	
+			applet.setCoords("C", $('eixo1c').getValue(), $('eixo1d').getValue());
 			applet.setFixed("C", true);
 			var aa = ($('eixo1a').value);
 			var bb = ($('eixo1c').value);
@@ -188,7 +188,7 @@ Event.observe(window, 'load', function(){
 			}
 
 		});
-		
+
 		Event.observe('eixo1a', 'change', function(evento){
 			var applet = document.ggbApplet;
 			applet.setFixed("B", false);
@@ -201,7 +201,7 @@ Event.observe(window, 'load', function(){
 			Responder_applet_p4();
 			}
 		});
-		
+
 		Event.observe('eixo1c', 'change', function(evento){
 			var applet = document.ggbApplet;
 			applet.setFixed("C", false);
@@ -214,11 +214,11 @@ Event.observe(window, 'load', function(){
 			Responder_applet_p4();
 			}
 		});
-		
+
 		Event.observe('eixo1d', 'change', function(evento){
 			var applet = document.ggbApplet;
 			applet.setFixed("C", false);
-			applet.setCoords("C", $('eixo1c').getValue(), $('eixo1d').getValue());	
+			applet.setCoords("C", $('eixo1c').getValue(), $('eixo1d').getValue());
 			applet.setFixed("C", true);
 			var aa = ($('eixo1a').value);
 			var bb = ($('eixo1c').value);
@@ -227,10 +227,10 @@ Event.observe(window, 'load', function(){
 			Responder_applet_p4();
 			}
 		});
-		
-		
+
+
 	}
-	
+
 	if (PosicaoAtual.Parte == 4){
 		if(getResp('parte5_q8_a_11') != 'undefined'){
 			$('parte5_q8_a_11').value = getResp('parte5_q8_a_11');
@@ -247,35 +247,35 @@ Event.observe(window, 'load', function(){
 		if(getResp('parte5_q8_e_11') != 'undefined'){
 			$('parte5_q8_e_11').value = getResp('parte5_q8_e_11');
 		}
-		
+
 		Event.observe('parte5_q8_a_11', 'change', function(evento){
 			validar_numeros('parte5_q8_a_11');
 			if ($('parte5_q8_a_11').value != ""){
 				setResp('parte5_q8_a_11',$('parte5_q8_a_11').value);
 			}
 		});
-		
+
 		Event.observe('parte5_q8_b_11', 'change', function(evento){
 			validar_numeros('parte5_q8_b_11');
 			if ($('parte5_q8_b_11').value != ""){
 				setResp('parte5_q8_b_11',$('parte5_q8_b_11').value);
 			}
 		});
-		
+
 		Event.observe('parte5_q8_c_11', 'change', function(evento){
 			validar_numeros('parte5_q8_c_11');
 			if ($('parte5_q8_c_11').value != ""){
 				setResp('parte5_q8_c_11',$('parte5_q8_c_11').value);
 			}
 		});
-		
+
 		Event.observe('parte5_q8_d_11', 'change', function(evento){
 			validar_numeros('parte5_q8_d_11');
 			if ($('parte5_q8_d_11').value != ""){
 				setResp('parte5_q8_d_11',$('parte5_q8_d_11').value);
 			}
 		});
-		
+
 		Event.observe('parte5_q8_e_11', 'change', function(evento){
 			validar_numeros('parte5_q8_e_11');
 			if ($('parte5_q8_e_11').value != ""){
@@ -291,22 +291,22 @@ Event.observe(window, 'load', function(){
 	}
 })
 
-function corrige_q_1_a(valor)	
+function corrige_q_1_a(valor)
 {
-return[$('Ele').Corrige()];
+//return[$('Ele').Corrige()];
 }
- 
+
 function corrige_q_2_a(valor)
 {
 	return [valor[0] == 12];
-} 
-
-function corrige_q_3_a(valor)	
-{
-return[$('Paralelo').Corrige()];
 }
 
-function corrige_q_4_a(valor)	
+function corrige_q_3_a(valor)
+{
+//return[$('Paralelo').Corrige()];
+}
+
+function corrige_q_4_a(valor)
 {
 return[(valor[0]==6)];
 }
@@ -314,7 +314,7 @@ return[(valor[0]==6)];
 function corrige_q_5_a(valor)
 {
 	return [(true), (false),(true), (false)];
-} 
+}
 
 function corrige_a2_p3_q_1(valor){
 return [valor[0]?false:null, valor[1]?true:null, valor[2]?false:null, valor[3]?false:null, valor[4]?false:null,];
@@ -420,7 +420,7 @@ function corrige_a2_p2_q_1(valor)
 }
 
 function corrige_a2_p2_q_2(valor)
-{	
+{
 	var x_esperado = Number($('parte1_q1_a_11').value) + Number($('parte1_q1_a_21').value);
 	var y_esperado = Number($('parte1_q1_a_12').value) + Number($('parte1_q1_a_22').value);
 	funcao_geogebra_a2_p2_q_2();
@@ -433,7 +433,7 @@ function corrige_a2_p2_q_3(valor)
 	var x_esperado = Number($('parte1_q1_a_11').value) + Number($('parte1_q1_a_21').value);
 	var y_esperado = Number($('parte1_q1_a_12').value) + Number($('parte1_q1_a_22').value);
 	funcao_geogebra_a2_p2_q_3();
-	
+
 	return [(valor[0] == x_esperado),(valor[1] == y_esperado)];
 
 }
@@ -467,8 +467,8 @@ function corrige_q_7_b()
 
 function set_inicial(){
 	if (($('eixo1').value == "")||($('eixo2').value == "")||($('eixo3').value == "")||($('eixo4').value == "")){
-		
-	var Perg =  
+
+	var Perg =
 		{
 			conteudo: 'Foi preenchida alguma coordenada inválida.',
 			layout: ['seta_baixo','direita'],
@@ -476,14 +476,14 @@ function set_inicial(){
 			callback: function (){},
 			respostas: [{sim: 'Ok'}]
 		};
-		
+
 		var tmp = new PopupCallback($('link_valor_inicial'), Perg.conteudo,Perg.layout, Perg.largura, Perg.callback, Perg.respostas);
 		tmp.abre();
 		Event.stopObserving($('link_valor_inicial'),'click');
 		//$('link_valor_inicial').writeAttribute({onclick: 'javascript:set_inicial();'});
 		Event.observe($('link_valor_inicial'), 'click', set_inicial);
 
-	
+
 	}else{
 		$('valor_inicial').addClassName('desabilitada');
 		$('valor_inicial_dentro').addClassName('desabilitada');
@@ -491,7 +491,7 @@ function set_inicial(){
 		$('eixo2').writeAttribute({disabled: 'disabled'});
 		$('eixo3').writeAttribute({disabled: 'disabled'});
 		$('eixo4').writeAttribute({disabled: 'disabled'});
-		criaVertices(); 
+		criaVertices();
 		animaVertices();
 		$('link_valor_inicial').hide();
 		$('unset_inicial').show();
@@ -523,7 +523,7 @@ function set1()
 
 	removeEsperando({Parte: 0, Questao:'parte1_q1', Item: 0}, 'Este item está baseado no valor acima');
 	removeEsperando({Parte: 0, Questao:'parte1_q1', Item: 1}, 'Este item está baseado no valor acima');
-	
+
 }
 
 function unset1()
@@ -563,7 +563,7 @@ function criaVertices() {
 		document.getElementById("eixo4").value = y;
 		applet.evalCommand("C = (" + x + "," + y + ")");
 		applet.evalCommand("C = (" + x + "," + y + ")");
-		
+
 		applet.setFixed('A', true);
 		applet.setFixed('B', true);
 		applet.setFixed('C', true);
@@ -609,7 +609,7 @@ function func2() {
 	var applet = document.ggbApplet;
 	if (applet.isAnimationRunning()) {
 		applet.stopAnimation();
-		applet.setAnimating('t_1',false)	
+		applet.setAnimating('t_1',false)
 		applet.setValue('t_2',0);
 		applet.setAnimating('t_2',true)
 		applet.setAnimationSpeed('t_2', 8.0)
@@ -630,7 +630,7 @@ function func3() {
 	applet.setFixed('a_2', 1);
 	applet.setFixed('b_2', 1);
 	applet.setFixed('c', 1);
-	applet.setFixed('d', 1);	
+	applet.setFixed('d', 1);
 }
 
 function registerListeners_a1_p3(){
