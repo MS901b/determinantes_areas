@@ -293,7 +293,8 @@ Event.observe(window, 'load', function(){
 
 function corrige_q_1_a(valor)
 {
-//return[$('Ele').Corrige()];
+	$('myCanvas').reset();
+	return true;
 }
 
 function corrige_q_2_a(valor)
@@ -303,12 +304,12 @@ function corrige_q_2_a(valor)
 
 function corrige_q_3_a(valor)
 {
-//return[$('Paralelo').Corrige()];
+	return[$('Paralelo').Corrige()];
 }
 
 function corrige_q_4_a(valor)
 {
-return[(valor[0]==6)];
+	return[(valor[0]==6)];
 }
 
 function corrige_q_5_a(valor)

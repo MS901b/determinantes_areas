@@ -1,31 +1,31 @@
 ﻿var IdPadrao = [['parte/parte','q/questao','/itemletra','/subitem'],'_'];
 var Partes = ['1', '2', '3', '4', '5'];
 var nomeSoft = 'determinantes';
-var Questoes = 
+var Questoes =
 [
 	{//Parte 1
 		parte1_q1: //Questão 1
 		{
-			itens: 
+			itens:
 			[
 				{//A
 					tipo: 'instrucao',
 					corrigir: corrige_q_1_a,
-					enunciado: 'Corte o polígono ao lado de modo a obter um retângulo.',
+					enunciado: 'Mova os triângulos e os encaixe de modo a obter um retângulo.',
 					msgErro: 'Clique o botão Recomeçar e tente novamente.',
-					msgAjuda: 'Recorte a figura original, clicando os pontos azuis, e mova a parte resultante.'
+					msgAjuda: 'Mova os triângulos, pressionando o mouse sobre eles, e os encaixe.'
 				}
 			]
 		},
 		parte1_q2: //Questão 2
 		{
-			itens: 
+			itens:
 			[
 				{//A
 					tipo: 'input',
 					corrigir: corrige_q_2_a,
 					depois: 'cm²',
-					enunciado: 'Considerando que todos os pontos adjacentes nas arestas do polígono estão igualmente espaçados em 1 cm, qual é a área do polígono original?',
+					enunciado: 'Considerando que os triangulos são triângulos retângulos e os seus lados têm 2 cm, qual é a área do polígono original?',
 					msgErro: 'A área de um retângulo é: base * altura.',
 					msgAjuda: 'Não é necessário digitar a unidade de medida.'
 				}
@@ -35,7 +35,7 @@ var Questoes =
 	{ //Parte 2
 		parte2_q3: //Questão 3
 		{
-			itens: 
+			itens:
 			[
 				{//A
 					tipo: 'instrucao',
@@ -48,7 +48,7 @@ var Questoes =
 		},
 		parte2_q4: //Questão 4
 		{
-			itens: 
+			itens:
 			[
 				{//A
 					tipo: 'input',
@@ -67,7 +67,7 @@ var Questoes =
 		parte4_q5: //Questão 6
 		{
 			enunciadoGeral: 'Construa no quadro ao lado um paralelogramo com as propriedades exigidas em cada um dos itens A, B, e C.',
-			itens: 
+			itens:
 			[
 				{//C
 					tipo: 'input',
@@ -108,9 +108,9 @@ var Questoes =
 			]
 		},
 		parte4_q6: //Questão 7
-		{	
+		{
 			enunciadoGeral: 'Seguindo o mesmo raciocínio da questão anterior, construa paralelogramos seguindo as restrições abaixo.',
-			itens: 
+			itens:
 			[
 				{//A
 					tipo: 'instrucao',
@@ -139,7 +139,7 @@ var Questoes =
 		parte5_q7: //Questão 8
 		{
 			enunciadoGeral: 'Associe a cada matriz a área do paralelogramo que ela representa.',
-			itens: 
+			itens:
 			[
 				{//A
 					tipo: 'drag',
@@ -153,9 +153,9 @@ var Questoes =
 			]
 		},
 		parte5_q8: //Questão 9
-		{	
+		{
 			enunciadoGeral: 'Calcule o determinante de cada uma das matrizes da questão anterior.',
-			itens: 
+			itens:
 			[
 				{//A
 					tipo: 'multiplo_input',

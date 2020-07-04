@@ -1,4 +1,4 @@
-//ModelGEO V1.2.0 - https://github.com/jr-santos98/ModelGEO
+//ModelGEO V1.1.0 - https://github.com/jr-santos98/ModelGEO
 // canvas related vars
 var c = document.getElementById("myCanvas");
 var ctx=c.getContext("2d");
@@ -279,7 +279,7 @@ function handleMousedblclick(e) {
 // Limpa a tela e desenha de novo
 function drawAll(){
     ctx.clearRect(0,0,cw,ch);
-    var color = 'red';
+    var color = 'blue';
     for(var i=0;i<shapes.length;i++){
         var shape=shapes[i];
         if(shape.mirror==false){
