@@ -89,7 +89,7 @@ function checkRectangle() {
     if (shape.y > maiorY) maiorY = shape.y;
     if (shape.y < menorY) menorY = shape.y;
   }
-  var multi = (numberElements-2)%2;
+  var multi = (numberElements-2)/2;
   console.log(multi);
   if (nX == numberElements-1) {
     if (menorY + multi*75 == maiorY) return true;
