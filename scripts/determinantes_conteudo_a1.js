@@ -12,7 +12,7 @@ var Questoes =
 					tipo: 'instrucao',
 					corrigir: corrige_q_1_a,
 					enunciado: 'Mova os triângulos e os encaixe de modo a obter um retângulo.',
-					msgErro: 'Clique o botão Recomeçar e tente novamente.',
+					msgErro: 'Clique no botão Recomeçar e tente novamente.',
 					msgAjuda: 'Mova os triângulos, pressionando o mouse sobre eles, e os encaixe.'
 				}
 			]
