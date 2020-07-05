@@ -293,8 +293,8 @@ Event.observe(window, 'load', function(){
 
 function corrige_q_1_a(valor)
 {
-	reset();
-	return [true];
+	var isRectangle = checkRectangle();
+	return [isRectangle];
 }
 
 function corrige_q_2_a(valor)

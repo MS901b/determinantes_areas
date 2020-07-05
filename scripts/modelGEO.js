@@ -44,6 +44,33 @@ c.onmouseup=handleMouseUp;
 c.onmouseout=handleMouseOut;
 c.ondblclick=handleMousedblclick;
 
+//Verifica se as figuras formam um triangulo
+function checkRectangle() {
+  var pX = shapes[0].x;
+  var nX = 0;
+  var pY = shapes[0].y;
+  var nY = 0;
+  var maiorX = 0;
+  var menorX = 520;
+  var maiorY = 0;
+  var menorY = 380;
+  for(var i=1;i<shapes.length;i++) {
+    var shape = shapes[i];
+    if (pX == shape.x) nX++;
+    if (pY == shape.y) nY++;
+    if (shape.x > maiorX) maiorX = shape.x;
+    if (shape.x < menorX) menorX = shape.x;
+    if (shape.y > maiorY) maiorY = shape.y;
+    if (shape.y < menorY) menorY = shape.y;
+  }
+  if (nX == 5) {
+    if (menorY + 150 == maiorY) return true;
+  } else if (nY == 5) {
+    if (menorX + 150 == maiorX) return true;
+  }
+  return false;
+}
+
 //Retorna a posição inicial
 function reset() {
   var ix = 170;
