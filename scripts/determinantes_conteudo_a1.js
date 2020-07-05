@@ -27,7 +27,7 @@ var Questoes =
 					depois: 'cm²',
 					enunciado: 'Considerando que os triangulos são triângulos retângulos e cada lado tem 2 cm, qual é a área do polígono original?',
 					msgErro: 'A área de um retângulo é: base * altura.',
-					msgAjuda: 'Não é necessário digitar a unidade de medida.'
+					msgAjuda: 'Não é necessário digitar a unidade de medida. Observe bem o número de triângulos.'
 				}
 			]
 		}
@@ -40,9 +40,9 @@ var Questoes =
 				{//A
 					tipo: 'instrucao',
 					corrigir: corrige_q_3_a,
-					enunciado: 'Corte o paralelogramo ao lado clicando dois pontos azuis. Depois, mova os pedaços resultantes de modo a obter um retângulo.',
+					enunciado: 'Mova os triângulos que formam o paralelogramo ao lado pressionando o mouse em cima das figuras. Depois, mova os de modo a obter um retângulo.',
 					msgErro: 'Clique o botão Recomeçar e tente novamente.',
-					msgAjuda: 'Recorte a figura original, clicando os pontos azuis, e mova a parte resultante.'
+					msgAjuda: 'Mova os triângulos, pressionando o mouse sobre eles, e os encaixe.'
 				}
 			]
 		},
@@ -56,7 +56,7 @@ var Questoes =
 					depois: 'cm²',
 					enunciado: 'Observando o retângulo obtido na questão anterior, responda: Qual a área do paralelogramo?',
 					msgErro: 'A área de um retângulo é: base * altura.',
-					msgAjuda: 'Não é necessário digitar a unidade de medida.'
+					msgAjuda: 'Não é necessário digitar a unidade de medida. Observe bem o número de triângulos.'
 				}
 			]
 		}

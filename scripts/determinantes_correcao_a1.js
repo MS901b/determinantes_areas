@@ -304,12 +304,13 @@ function corrige_q_2_a(valor)
 
 function corrige_q_3_a(valor)
 {
-	return[$('Paralelo').Corrige()];
+	var isRectangle = checkRectangle();
+	return [isRectangle];
 }
 
 function corrige_q_4_a(valor)
 {
-	return[(valor[0]==6)];
+	return[(valor[0] == 16)];
 }
 
 function corrige_q_5_a(valor)

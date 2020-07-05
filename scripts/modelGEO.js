@@ -26,6 +26,9 @@ shapes.push( {x:170, y:195, line:75, mirror:false} );
 shapes.push( {x:170, y:195, line:75, mirror:true} );
 shapes.push( {x:245, y:195, line:75, mirror:false} );
 shapes.push( {x:245, y:195, line:75, mirror:true} );
+//Adicionais
+shapes.push( {x:10, y:10, line:75, mirror:false} );
+shapes.push( {x:10, y:100, line:75, mirror:true} );
 
 // drag related vars
 var isDragging=false;
@@ -33,6 +36,8 @@ var startX,startY;
 
 // hold the index of the shape being dragged (if any)
 var selectedShapeIndex;
+//var numberElements=shapes.length;
+var numberElements=6;
 
 // draw the shapes on the canvas
 drawAll();
@@ -44,6 +49,27 @@ c.onmouseup=handleMouseUp;
 c.onmouseout=handleMouseOut;
 c.ondblclick=handleMousedblclick;
 
+//Retorna a 2ª posição inicial
+function reset2() {
+  numberElements = 8;
+  var ix = 125;
+  var iy = 150;
+  var ixx = 50;
+  for(var i=0;i<numberElements;i++){
+      var shape=shapes[i];
+      if (i % 2 == 0) {
+        shape.x = ix;
+        shape.y = iy;
+        ix += 75;
+      } else {
+        shape.x = ixx;
+        shape.y = iy;
+        ixx += 75;
+      }
+  }
+  drawAll();
+}
+
 //Verifica se as figuras formam um triangulo
 function checkRectangle() {
   var pX = shapes[0].x;
@@ -54,7 +80,7 @@ function checkRectangle() {
   var menorX = 520;
   var maiorY = 0;
   var menorY = 380;
-  for(var i=1;i<shapes.length;i++) {
+  for(var i=1;i<numberElements;i++) {
     var shape = shapes[i];
     if (pX == shape.x) nX++;
     if (pY == shape.y) nY++;
@@ -63,10 +89,11 @@ function checkRectangle() {
     if (shape.y > maiorY) maiorY = shape.y;
     if (shape.y < menorY) menorY = shape.y;
   }
-  if (nX == 5) {
-    if (menorY + 150 == maiorY) return true;
-  } else if (nY == 5) {
-    if (menorX + 150 == maiorX) return true;
+  var multi = (numberElements-2)%2;
+  if (nX == numberElements-1) {
+    if (menorY + multi*75 == maiorY) return true;
+  } else if (nY == numberElements-1) {
+    if (menorX + multi*75 == maiorX) return true;
   }
   return false;
 }
@@ -76,7 +103,7 @@ function reset() {
   var ix = 170;
   var iy = 120;
   var iyy = 10;
-  for(var i=0;i<shapes.length;i++){
+  for(var i=0;i<numberElements;i++){
       var shape=shapes[i];
       if (i == 2) {
         iy += 75;
@@ -151,7 +178,7 @@ function haveANeighborInside(i) {
 
 //Redefini as posições dos objetos quando estiverem proximos
 function rearrange() {
-  for(var i=0;i<shapes.length;i++){
+  for(var i=0;i<numberElements;i++){
     if(i==selectedShapeIndex)   continue;
     if (haveANeighborUp(i)) {
       shapes[selectedShapeIndex].x = shapes[i].x;
@@ -219,7 +246,7 @@ function handleMouseDown(e){
     startY=parseInt(e.clientY-offsetY);
     // test mouse position against all shapes
     // post result if mouse is in a shape
-    for(var i=0;i<shapes.length;i++){
+    for(var i=0;i<numberElements;i++){
         if(isMouseInShape(startX,startY,shapes[i])){
             // the mouse is inside this shape
             // select this shape
@@ -290,7 +317,7 @@ function handleMousedblclick(e) {
   startY=parseInt(e.clientY-offsetY);
   // test mouse position against all shapes
   // post result if mouse is in a shape
-  for(var i=0;i<shapes.length;i++){
+  for(var i=0;i<numberElements;i++){
       if(isMouseInShape(startX,startY,shapes[i])){
           if(shapes[i].mirror==false) {
             shapes[i].mirror=true;
@@ -307,7 +334,7 @@ function handleMousedblclick(e) {
 function drawAll(){
     ctx.clearRect(0,0,cw,ch);
     var color = 'blue';
-    for(var i=0;i<shapes.length;i++){
+    for(var i=0;i<numberElements;i++){
         var shape=shapes[i];
         if(shape.mirror==false){
             // it's a triangle
