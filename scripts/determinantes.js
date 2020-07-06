@@ -211,9 +211,8 @@ function selecionou_q_6_c(){
 		P4_feita[2] = 1;
 		// Matias
 		var applet = document.ggbApplet;
-    applet.setXcoord('B') = $('eixo1a').value;
-    applet.setXcoord('C') = $('eixo1c').value;
-    applet.setYcoord('C') = $('eixo1d').value;
+    applet.setCoords('B', 0, 0);
+    applet.setCoords('C', 0, 0);
 		minhaString[2] = applet.getXML();
 	}
 	questao_a_responder = 'p1_q6_c';
