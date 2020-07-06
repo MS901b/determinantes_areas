@@ -52,9 +52,9 @@ c.ondblclick=handleMousedblclick;
 //Retorna a 2ª posição inicial
 function reset2() {
   numberElements = 8;
-  var ix = 125;
+  var ix = 150;
   var iy = 150;
-  var ixx = 50;
+  var ixx = 75;
   for(var i=0;i<numberElements;i++){
       var shape=shapes[i];
       if (i % 2 == 0) {
@@ -90,7 +90,6 @@ function checkRectangle() {
     if (shape.y < menorY) menorY = shape.y;
   }
   var multi = (numberElements-2)/2;
-  console.log(multi);
   if (nX == numberElements-1) {
     if (menorY + multi*75 == maiorY) return true;
   } else if (nY == numberElements-1) {
