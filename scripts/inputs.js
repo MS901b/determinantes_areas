@@ -1,10 +1,10 @@
-﻿
+
 Element.addMethods('input',
 {
 	trava: function (element)
 	{
 		element = $(element);
-	     // element.fire('input:disable');
+		element.fire('input:disable');
 		element.disabled = true;
 		element.addClassName('desabilitado');
 	},
@@ -34,7 +34,7 @@ Element.addMethods('select',
 	trava: function (element)
 	{
 		element = $(element);
-	     // element.fire('input:disable');
+		element.fire('input:disable');
 		element.addClassName('desabilitado');
 		element.disabled = true;
 	},
@@ -60,38 +60,70 @@ Event.observe(document, 'dom:afterLoaded', function()
 	{
 		var select = new Element('select', {className: 'caracteres_especiais', quais: input.readAttribute('quais')});
 		var padding = eval(input.getStyle('paddingLeft').replace('px', '') + '+' + input.getStyle('paddingRight').replace('px', ''));
-		input.insert({after: select});
+		if(input.next('.depois')) input.next('.depois').insert('&emsp;').insert({after: select});
+		else					  input.insert({after: select});
 		input.setStyle({width: (input.getWidth()-50-padding-4)+'px'});
-		Event.observe(select, 'input:change', function(ev){this.setValue(this.value+Event.element(ev).value);}.bind(input));
-		
+
+		// Simula o selectionEnd e o selectionStart no IE
+		if(Prototype.Browser.IE)
+		{
+			var seta_selecao = function(ev)
+			{
+				var input = Event.element(ev);
+				var range = document.selection.createRange();
+				var stored_range = range.duplicate();
+				stored_range.expand('textedit');
+				stored_range.setEndPoint('EndToEnd', range);
+				input.selectionStart = stored_range.text.length - range.text.length;
+				input.selectionEnd = input.selectionStart + range.text.length;
+			}.bind(input);
+			input.observe('mouseup', seta_selecao);
+			input.observe('keyup', seta_selecao);
+		}
+
+		Event.observe(select, 'input:change', function(ev)
+		{
+			if (this.selectionStart || this.selectionStart == "0") {
+				var startPos = this.selectionStart;
+				var endPos = this.selectionEnd;
+				var chaineSql = this.value;
+
+				this.setValue(this.value.substring(0, startPos) + Event.element(ev).value + this.value.substring(endPos, this.value.length));
+			}
+			else
+			{
+				this.setValue(this.value+Event.element(ev).value);
+			}
+		}.bind(input));
+
 		if(input.disabled)
 			select.trava();
 	});
-	
+
 	$$('input[type="slider"]').each(function(el)
 	{
 		new Slider(el);
 	});
-	
+
 	$$('input[type="spinner"]').each(function(el)
 	{
 		new Spinner(el);
 	});
-	
+
 	$$('select').each(function(el){
 		new Select(el);
 	});;
-	
+
 	$$('input[type="ggbToolbar"]').each(function(el)
 	{
 		new GgbToolbar(el);
 	});
-	
+
 	// $$('input[type="radio"]').each(function(el)
 	// {
 		// new Radio(el);
 	// });
-	
+
 	// $$('input[type="checkbox"]').each(function(el)
 	// {
 		// new Check(el);
@@ -118,14 +150,14 @@ var Slider = Class.create(Control.Slider, {
 				if(this.passo == this.passo.toFixed(this.casas))
 					break;
 		}
-		
+
 		this.divCont = new Element('div', {className: 'slider'})
 		this.divCont.insert(this.handle = new Element('input', {type:'text', id: id, className:'handle', style: style}));
-		
+
 		var left;
 		var valores = new Array();
 		var espacamento = 318/(max)*this.passo;
-		
+
 		if(this.passo != 'NaN' && min != 'NaN' && max != 'NaN' && min < max)
 		{
 			for(var a = min; a <= max; a+=this.passo)
@@ -141,16 +173,16 @@ var Slider = Class.create(Control.Slider, {
 				}
 			}
 		}
-		
+
 		this.divCont.insert({top: new Element('div', {className:'face', style: 'width:'+(left-10)+'px;'})});
 		this.imprime(this.input);
-		
+
 		Event.observe(this.handle, 'input:disable', this.desabilita.bind(this));
 		Event.observe(this.handle, 'input:enable', this.habilita.bind(this));
 		Event.observe(this.handle, 'change', this.change.bind(this))
 		Event.observe(this.handle, 'input:change', this.change.bind(this));
 		Event.observe(this.handle, 'keydown', this.keyDown.bind(this));
-		
+
 		$super(this.handle, this.divCont, {
 			range: $R(min, max),
 			values: valores,
@@ -180,14 +212,14 @@ var Slider = Class.create(Control.Slider, {
 				this.handle.setValue(Number(this.handle.value)+Number(this.passo));
 				ev.stop();
 				break;
-				
+
 			case Event.KEY_DOWN:
 			case Event.KEY_LEFT:
 				this.handle.setValue(Number(this.handle.value)-Number(this.passo));
 				ev.stop();
 				break;
 		}
-		
+
 	},
 	desabilita: function()
 	{
@@ -222,15 +254,15 @@ var Spinner = Class.create({
 		this.max = input.readAttribute('max');
 		this.min = input.readAttribute('min');
 		this.padrao = input.readAttribute('value');
-		
+
 		this.input = new Element('input',{type: 'text', id: input.id, value: this.padrao});
 		this.input.setStyle({width: ((this.max.length>this.min.length)?this.max.length:this.min.length)*11+'px'});
-		
+
 		this.up = new Element('div',{className: 'up'});
 		this.down = new Element('div',{className: 'down'});
 		this.divCont = new Element('div', {className: 'spinner', style: input.readAttribute('style')});
 		this.divCont.insert(this.input).insert(this.down).insert(this.up).insert(new Element('div',{className: 'limpador'}));
-		
+
 		Event.observe(this.up, 'mousedown', this.sobe.bind(this));
 		Event.observe(this.down, 'mousedown', this.desce.bind(this));
 		Event.observe(this.input, 'keydown', this.filtra.bind(this));
@@ -240,7 +272,7 @@ var Spinner = Class.create({
 		Event.observe(this.input, 'input:enable', this.habilita.bind(this));
 		Event.observe(this.input, 'input:change', this.filtra2.bind(this));
 		Event.observe(document, 'mouseup', this.para.bind(this));
-		
+
 		input.replace(this.divCont);
 		this.divCont.insert({after: new Element('div', {className: 'limpador'})});
 	},
@@ -260,7 +292,7 @@ var Spinner = Class.create({
 			this.input.fire('input:change');
 		}
 	},
-	
+
 	d: function()
 	{
 		if(!this.input.disabled && Number(this.input.value) > Number(this.min))
@@ -303,7 +335,7 @@ var Spinner = Class.create({
 	filtra: function(ev)
 	{
 		var key = ev.which | ev.keyCode;
-		
+
 		switch(key)
 		{
 			case Event.KEY_UP:
@@ -311,15 +343,15 @@ var Spinner = Class.create({
 				this.sobe();
 				this.para();
 				return;
-				
+
 			case Event.KEY_DOWN:
 			case Event.KEY_LEFT:
 				this.desce();
 				this.para();
 				return;
 		}
-		
-		
+
+
 		var cond1 = (key >= 48 && key <= 57);
 		var cond2 = (key >= 96 && key <= 105);
 		var cond3 = (key == 109);
@@ -332,7 +364,7 @@ var Spinner = Class.create({
 	{
 		if(this.input.value == '')
 			return;
-		
+
 		if(Number(this.input.value) == Number.NaN)
 		{
 			this.input.value = this.padrao;
@@ -341,31 +373,33 @@ var Spinner = Class.create({
 			this.input.value = this.min;
 		if(this.input.value > Number(this.max))
 			this.input.value = this.max;
-		
+
 	}
 });
 
 
 var Select = Class.create({
-	values: null, especial: null, span: null, seta: null, input: null,
 	caracteres:new Hash({
-		mais_ou_menos:	{codigo: "&#177;",	nome: '±'},
-		modulo:			{codigo: "&#124;",	nome: '|'},
-		alfa:			{codigo: "&#945;",	nome: 'α'},
-		beta:			{codigo: "&#946;",	nome: 'β'},
-		gama:			{codigo: "&#947;",	nome: 'γ'},
-		delta:			{codigo: "&#948;",	nome: 'δ'},
-		epsilon:		{codigo: "&#949;",	nome: 'ε'},
-		teta:			{codigo: "&#952;",	nome: 'θ'},
-		lambda:			{codigo: "&#955;",	nome: 'λ'},
-		pi:				{codigo: "&#960;",	nome: 'π'},
-		raiz:			{codigo: "&radic;",	nome: '√'},
-		intersecao:		{codigo: "&cap;",	nome: '∩'},
-		uniao:			{codigo: "&cup;",	nome: '∪'}
+		mais_ou_menos:	{rotulo: "&#177;",	nome: '±'},
+		quadrado:		{rotulo: "&#178;",	nome: '²'},
+		cubo:			{rotulo: "&#179;",	nome: '³'},
+		modulo:			{rotulo: "&#124;",	nome: '|'},
+		alfa:			{rotulo: "&#945;",	nome: 'α'},
+		beta:			{rotulo: "&#946;",	nome: 'β'},
+		gama:			{rotulo: "&#947;",	nome: 'γ'},
+		delta:			{rotulo: "&#948;",	nome: 'δ'},
+		epsilon:		{rotulo: "&#949;",	nome: 'ε'},
+		teta:			{rotulo: "&#952;",	nome: 'θ'},
+		lambda:			{rotulo: "&#955;",	nome: 'λ'},
+		pi:				{rotulo: "&#960;",	nome: 'π'},
+		raiz:			{rotulo: "&radic;",	nome: '√'},
+		intersecao:		{rotulo: "&cap;",	nome: '∩'},
+		uniao:			{rotulo: "&cup;",	nome: '∪'}
 	}),
 	initialize: function (input)
 	{
 		this.values = new Hash();
+		this.acessivel = false;
 		this.divCont = new Element('div', {className: 'select'});
 		this.divCont.insert(this.span  = new Element('span', {className: 'value'}));
 		this.divCont.insert(this.seta  = new Element('a', {className: 'seta', href: 'javascript:;'}).update(' '));
@@ -373,35 +407,39 @@ var Select = Class.create({
 		this.input.insert({before: this.divCont});
 		this.input.hide();
 		this.opcoes = new Element('div', {className: 'opcoes'});
-		
+
 		this.absolute = this.input.up('div#questoes') != undefined;
 		if(this.absolute)
 			document.body.appendChild(this.opcoes);
 		else
 			this.divCont.insert(this.opcoes);
-		
+
 		// Se for especial, monta um input antes pro script não se perder
 		this.especial = this.input.hasClassName('caracteres_especiais');
 		if(this.especial)
 		{
 			var especiais = this.input.readAttribute('quais');
 			this.input.writeAttribute({quais: null});
-			
-			if(especiais)	especiais = especiais.split(',');
+
+			if(especiais)	especiais = especiais.toString().split(',');
 			else			especiais = this.caracteres.keys();
-			
+
 			for(var a = 0; a < especiais.length; a++)
 			{
 				qual = especiais[a].trim();
 				dados = this.caracteres.get(qual);
-				
+
 				if(dados)
-					this.input.insert(new Element('option', {value: dados.nome}).update(dados.codigo));
+					this.input.insert(new Element('option', {value: dados.nome}).update(dados.rotulo));
 				else
 					this.input.insert(new Element('option', {value: 'null'}).update('NÃO ACHEI: '+qual));
 			}
 		}
-		
+
+		// Poem a classe especial (que faz o select não pegar a correção)
+		if(this.especial || this.input.hasClassName('especial'))
+			this.divCont.addClassName('especial');
+
 		// Monta as opções
 		var opcoes = this.input.select('option');
 		opcoes.each(function(op)
@@ -409,32 +447,32 @@ var Select = Class.create({
 			tmp = new Element('span',{value: op.getAttribute('value')}).update(op.innerHTML);
 			this.values.set(op.getAttribute('value'), op.innerHTML);
 			this.opcoes.insert(tmp);
-			
+
 			Event.observe(tmp, 'mouseover', this.overItem.bind(this));
 			Event.observe(tmp, 'click', this.seleciona.bind(this));
 		}.bind(this));
-		
-		
+
+
 		if(this.divCont.getWidth() > this.opcoes.getWidth()+20)
 			largura = (this.divCont.getWidth()+8);
 		else
 			largura = (this.opcoes.getWidth()+34);
-		
+
 		if(this.especial)
 			largura = 45;
-		
+
 		this.opcoes.setStyle({width: largura+'px'});
 		this.seta.setStyle({left: (largura-21)+'px'});
 		this.divCont.setStyle({cssFloat: 'left', width: largura+'px'});
 		this.opcoes.hide();
 		this.divCont.insert({after: new Element('div', {className: 'limpador'}).update(' ')});
-		
+
 		if(this.especial)
 		{
 			this.divCont.setStyle({marginLeft: '5px'})
 		}
-		
-		Event.observe(this.seta, 'mousedown', function(ev){ev.stop()});
+
+		// Event.observe(this.seta, 'mousedown', function(ev){ev.stop()});
 		Event.observe(this.seta, 'blur', this.fechaBlur.bind(this));
 		Event.observe(this.seta, 'keydown', this.navega.bind(this));
 		Event.observe(this.input, 'input:disable', this.trava.bind(this));
@@ -442,7 +480,7 @@ var Select = Class.create({
 		Event.observe(this.input, 'input:change', this.atualizaValor.bind(this));
 		Event.observe(this.divCont, 'click', this.abrefecha.bind(this));
 		Event.observe(document, 'click', this.fecha.bind(this));
-		
+
 		this.atualizaValor();
 	},
 	limpaItens: function()
@@ -459,6 +497,7 @@ var Select = Class.create({
 	},
 	abrefecha: function(ev)
 	{
+		ev.stop();
 		if(this.opcoes.visible())
 			this.fecha(ev);
 		else
@@ -468,9 +507,9 @@ var Select = Class.create({
 	{
 		if(this.input.disabled)
 			return;
-		
 		var left_offset = 2, top_offset = 2;
-		
+
+		this.acessivel = false;
 		this.opcoes.show();
 		if(this.absolute)
 			this.opcoes.setStyle({
@@ -481,37 +520,29 @@ var Select = Class.create({
 				zIndex: 20
 			});
 		else
-			this.opcoes.setStyle({	
+			this.opcoes.setStyle({
 				marginTop: '-20px',
 				marginLeft: '-1px',
 				width: (this.divCont.getWidth()-2)+'px',
 				position: 'absolute',
 				zIndex: 20
 			});
-		
+
 		this.limpaItens();
 		var a_selecionar = this.opcoes.select('span[value="'+this.input.value+'"]');
 		if(a_selecionar.length)
 			a_selecionar[0].addClassName('selecionado');
-		
+
 		if(this.opcoes.viewportOffset().top+this.opcoes.getHeight() > document.viewport.getHeight())
 			window.setTimeout(function(){Effect.ScrollTo(this.opcoes, {duration: 0.4, offset: -(document.viewport.getHeight()-this.opcoes.getHeight()-60)})}.bind(this), 500);
 	},
 	fecha: function(ev)
 	{
-		switch(Event.element(ev))
-		{
-			case this.divCont:
-			case this.seta:
-			case this.span:
-				return;
-				break;
-		}
 		this.opcoes.hide();
 	},
 	fechaBlur: function(ev)
 	{
-		if(!ev.isLeftClick())
+		if(this.acessivel)
 			this.opcoes.hide();
 	},
 	navega: function(ev)
@@ -524,50 +555,51 @@ var Select = Class.create({
 				if(!this.opcoes.visible())
 				{
 					this.abre();
+					this.acessivel = true;
 					ev.stop();
 					return;
-				}	
+				}
 				var itens = this.opcoes.select('span');
 				var selecionado = -1;
-				
+
 				for(var a=0; a < itens.length; a++)
 					if(itens[a].hasClassName('selecionado'))
 						selecionado = a;
-				
+
 				switch(key){
 					case Event.KEY_UP:		selecionado--;	break;
 					case Event.KEY_DOWN:	selecionado++;	break;
 				}
-				
+
 				selecionado = selecionado%itens.length;
 				if(selecionado < 0)	selecionado = itens.length-1;
-				
+
 				this.limpaItens();
 				itens[selecionado].addClassName('selecionado');
 				ev.stop();
 				break;
-			
+
 			case Event.KEY_RETURN:
 				this.seleciona(ev);
 				this.fechaBlur(ev);
 				break;
 		}
-		
-		
+
+
 	},
 	seleciona: function(ev)
 	{
 		var value = this.opcoes.select('.selecionado')[0].getAttribute('value');
 		this.input.setValue(value);
-		
+
 		if(ev)
 			ev.stop();
-		
+
 		this.fecha(ev);
 	},
 	atualizaValor: function(ev)
 	{
-		this.span.update(this.values.get(this.input.getValue()));
+		this.span.update().insert(this.values.get(this.input.getValue()));
 	},
 	trava: function()
 	{
@@ -584,7 +616,7 @@ var Radio = Class.create({span: null,
 	initialize: function (input)
 	{
 		this.span = new Element('a', {className: 'radio', href:'#'});
-		
+
 		this.oldInput = input;
 		this.oldInput.insert({before: this.span});
 		this.oldInput.hide();
@@ -596,7 +628,7 @@ var Radio = Class.create({span: null,
 		Event.observe(this.oldInput, 'input:atualiza', this.atualiza.bind(this));
 		Event.observe(this.oldInput, 'input:disable', this.trava.bind(this));
 		Event.observe(this.oldInput, 'input:enable', this.destrava.bind(this));
-		
+
 		if(this.oldInput.disabled)
 			this.trava();
 	},
@@ -619,8 +651,8 @@ var Radio = Class.create({span: null,
 	{
 		if (this.oldInput.disabled)
 			return;
-		
-		
+
+
 		if (this.oldInput.checked)
 		{
 			this.span.addClassName('radio_checado');
@@ -635,7 +667,7 @@ var Radio = Class.create({span: null,
 	{
 		if(input != this.oldInput)
 			input.fire('input:atualiza');
-			
+
 	},
 	trava: function(ev)
 	{
@@ -654,7 +686,7 @@ var Check = Class.create({span: null,
 		if (!(input.hasClassName('some')))
 		{
 			this.span = new Element('a', {className: 'check', href: '#'});
-			
+
 			this.oldInput = input;
 			this.oldInput.insert({before: this.span});
 			this.oldInput.hide();
@@ -665,7 +697,7 @@ var Check = Class.create({span: null,
 			Event.observe(this.oldInput, 'input:change', this.atualiza.bind(this));
 			Event.observe(this.oldInput, 'input:disable', this.trava.bind(this));
 			Event.observe(this.oldInput, 'input:enable', this.destrava.bind(this));
-			
+
 			if(this.oldInput.disabled)
 				this.trava();
 		}
@@ -779,7 +811,7 @@ var GgbToolbar = Class.create({
 		else botoes = ["0"];
 
 		this.divCont = new Element('div', {className: 'ggbToolbar'});
-		
+
 		for(var i = 0; i < botoes.length; i++)
 			{
 				qual = botoes[i].trim();
@@ -811,19 +843,19 @@ var GgbToolbar = Class.create({
 	{
 		var elem = Event.element(ev);
 		var numBotao = Number(elem.getAttribute('id').split('_').last());
-		
-		if (this.botaoSelec!=numBotao) 
+
+		if (this.botaoSelec!=numBotao)
 			{
 
 				if (this.botaoSelec>-1) this.botoesCtrl[this.botaoSelec].elem.removeClassName('selecionado');
 				this.botoesCtrl[numBotao].elem.removeClassName('mouseover');
 				this.botoesCtrl[numBotao].elem.addClassName('selecionado');
 				this.botaoSelec=numBotao;
-				
+
 				// Chamada para o geogebra
-				var applet = document.applets[this.idApplet];
+				var applet = document[this.idApplet];
 				applet.setMode(this.botoesCtrl[numBotao].numGgb);
 			}
 	}
-	
+
 });
