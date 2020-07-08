@@ -117,8 +117,6 @@ Event.observe(window, 'load', function(){
 	}
 
 	if (PosicaoAtual.Parte == 3){
-		var posicao = {Parte: 3, Questao: 'parte4_q5', Item:0};
-		PegaQuestao(posicao).seleciona();
 
 		if ($('parte4_q5_a_11')){$('parte4_q5_a_11').value = "";
 		setResp('parte4_q5_a_11',$('parte4_q5_a_11').value);
