@@ -29,6 +29,8 @@ shapes.push( {x:245, y:195, line:75, mirror:true} );
 //Adicionais
 shapes.push( {x:10, y:10, line:75, mirror:false} );
 shapes.push( {x:10, y:100, line:75, mirror:true} );
+shapes.push( {x:10, y:115, line:75, mirror:false} );
+shapes.push( {x:10, y:195, line:75, mirror:true} );
 
 // drag related vars
 var isDragging=false;
@@ -51,10 +53,10 @@ c.ondblclick=handleMousedblclick;
 
 //Retorna a 2ª posição inicial
 function reset2() {
-  numberElements = 8;
-  var ix = 150;
+  numberElements = 10;
+  var ix = 100;
   var iy = 150;
-  var ixx = 75;
+  var ixx = 25;
   for(var i=0;i<numberElements;i++){
       var shape=shapes[i];
       if (i % 2 == 0) {

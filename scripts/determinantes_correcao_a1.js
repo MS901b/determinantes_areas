@@ -310,7 +310,7 @@ function corrige_q_3_a(valor)
 
 function corrige_q_4_a(valor)
 {
-	return[(valor[0] == 16)];
+	return[(valor[0] == 20)];
 }
 
 function corrige_q_5_a(valor)
