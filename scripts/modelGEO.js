@@ -76,10 +76,10 @@ function checkRectangle() {
   var nX = 0;
   var pY = shapes[0].y;
   var nY = 0;
-  var maiorX = 0;
-  var menorX = 520;
-  var maiorY = 0;
-  var menorY = 380;
+  var maiorX = shapes[0].x;
+  var menorX = shapes[0].x;
+  var maiorY = shapes[0].y;
+  var menorY = shapes[0].y;
   for(var i=1;i<numberElements;i++) {
     var shape = shapes[i];
     if (pX == shape.x) nX++;
