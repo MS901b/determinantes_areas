@@ -86,7 +86,7 @@ class Mapinha {
                     if (item.getElementsByTagName("estadoinicial") != undefined && item.getElementsByTagName("estadoinicial").length > 0)
                         novoItem.status = item.getElementsByTagName("estadoinicial")[0].childNodes[0].nodeValue;
 
-                    //pega estado inicial do SalvaLocal	
+                    //pega estado inicial do SalvaLocal
                     this.pegaEstado(novoItem);
 
                     //rotulos

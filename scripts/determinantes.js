@@ -17,7 +17,7 @@ var nomeSoft = 'determinantes';
 function getResp(id) {
  return $('SalvaLocal').Pega(nomeSoft,id);
 }
- 
+
 function setResp(id,valor) {
  $('SalvaLocal').Salva(nomeSoft,id,valor);
 }
@@ -38,8 +38,8 @@ function mudaValorResposta(id, value) {
 
 function func_stop() {
 	var applet = document.ggbApplet;
-	if (applet.isAnimationRunning()) applet.stopAnimation() 
-	else applet.startAnimation() 
+	if (applet.isAnimationRunning()) applet.stopAnimation()
+	else applet.startAnimation()
 }
 
 var ggb_abriu = false;
@@ -155,7 +155,7 @@ function selecionou_q_6_a(){
 	if (ggb_abriu == true){
 			if (P4_feita[0] == 1){
 			var applet = document.ggbApplet;
-				applet.setXML(minhaString[0]);	
+				applet.setXML(minhaString[0]);
 				$('eixo1a').value = applet.getXcoord('B');
 				$('eixo1c').value = applet.getXcoord('C');
 				$('eixo1d').value = applet.getYcoord('C');
@@ -167,11 +167,11 @@ function selecionou_q_6_a(){
 				P4_feita[0] = 1;
 				// Matias
 				var applet = document.ggbApplet;
-					
+
 			}
 			minhaString[0] = applet.getXML();
 	}
-			questao_a_responder = 'p1_q6_a';		
+			questao_a_responder = 'p1_q6_a';
 }
 
 function selecionou_q_6_b(){
@@ -229,11 +229,11 @@ function selecionou_q_7_a(){
 		$('eixo1d').value = 0;
 		limpar_applet();
 		P4_feita[3] = 1;
-		
+
 				// Matias
 				var applet = document.ggbApplet;
 				minhaString[3] = applet.getXML();
-		
+
 	}
 	questao_a_responder = 'p1_q7_a';
 }
@@ -254,7 +254,7 @@ function selecionou_q_7_b(){
 			// Matias
 			var applet = document.ggbApplet;
 			minhaString[4] = applet.getXML();
-		
+
 	}
 	questao_a_responder = 'p1_q7_b';
 }
@@ -336,7 +336,7 @@ function Responder_applet_p4(){
 	var aa = ($('eixo1a').value);
 	var bb = ($('eixo1c').value);
 	var cc = ($('eixo1d').value);
-	
+
 	if ((aa != 0)||(bb != 0)||(cc != 0)){
 		if(questao_a_responder != 0){
 			var applet = document.ggbApplet;
@@ -400,7 +400,7 @@ function Responder_applet_p4(){
 							P4_restricoes[4] = 1;
 						}else{
 							P4_restricoes[4] = 0;
-						}	
+						}
 					}else{
 						P4_restricoes[4] = 0;
 					}
@@ -412,7 +412,7 @@ function Responder_applet_p4(){
 			$(questao_a_responder+"a12").update('0');
 			$(questao_a_responder+"a21").update(X2_applet);
 			$(questao_a_responder+"a22").update(Y2_applet);
-			
+
 		}else if (questao_a_responder == 0){
 					("É necessário selecionar uma questão");
 		}
@@ -424,7 +424,7 @@ function valida_applet_a2_p1(){
 	yB2 = document.getElementById('a2_p1_y1').value;
 	xC2 = document.getElementById('a2_p1_x2').value;
 	yC2 = document.getElementById('a2_p1_y2').value;
-	if ( (xB2 >=1) && (xB2 <= 3) && (yB2 >=1) && (yB2 <= 3) && (xC2 >=1) 
+	if ( (xB2 >=1) && (xB2 <= 3) && (yB2 >=1) && (yB2 <= 3) && (xC2 >=1)
 		&& (xC2 <= 3) && (yC2 >=1) && (yC2 <= 3)){
 		return 1;
 	}else{
@@ -437,9 +437,9 @@ function mudaValorResposta2(id,value) {
 		validarResposta_fixar_zero(id);
 		value = document.getElementById(id).value
 	};
-	
+
 	mudaImagemCertoErrado( "img"+id,0);
-	
+
 	if (value!="") {
 		respId=id.replace("Resp_","");
 		setResp(respId,value);
@@ -451,9 +451,9 @@ function mudaValorResposta3(id,value) {
 		validarResposta_nao_negativo(id);
 		value = document.getElementById(id).value
 	};
-	
+
 	mudaImagemCertoErrado( "img"+id,0);
-	
+
 	if (value!="") {
 		respId=id.replace("Resp_","");
 		setResp(respId,value);
@@ -461,7 +461,7 @@ function mudaValorResposta3(id,value) {
 }
 
 function validarResposta_fixar_zero(id){
-	
+
 		respostaData=document.getElementById(id).value;
 		respostaData=respostaData.replace(',','.');
 		if ((respostaData != 0)||(isNaN(respostaData)))  {
@@ -470,7 +470,7 @@ function validarResposta_fixar_zero(id){
 }
 
 function validarResposta_nao_negativo(id){
-	
+
 		respostaData=document.getElementById(id).value;
 		respostaData=respostaData.replace(',','.');
 		if ((respostaData < 0)||(isNaN(respostaData))) {
@@ -512,50 +512,50 @@ document.getElementById("Resp_A1_P5_Q4_e").value="";
 function vai(qual, modo) {
 
 	antiga = parteatual;
-	
+
 	if (modo == 'pagina') {
 		var form = document.getElementById('Partes'+ antiga);
 		form.action = 'a1_p' + qual + '.html';
 		form.submit();
 	} else {
-		
+
 		var div_antiga = document.getElementById('parte_' + antiga);
 		var div_nova = document.getElementById('parte_' + qual);
 		var div_parte_antiga = document.getElementById('esta_etapa_' + antiga);
 		var div_parte_nova = document.getElementById('esta_etapa_' + qual);
-		
+
 		div_antiga.className = 'quadradinho';
 		div_nova.className = 'selecionado quadradinho';
 		div_parte_antiga.className = 'esta_etapa escondido';
 		div_parte_nova.className = 'esta_etapa';
 		window.scrollTo(0, 0);
 	}
-	
+
 	parteatual = qual;
 
 }
 
 
-function trocaApplet(antigo,novo) 
+function trocaApplet(antigo,novo)
 	{
 
 		var div_antiga = document.getElementById('applet_' + antigo);
 		var div_nova = document.getElementById('applet_' + novo);
-		
+
 		div_antiga.className = 'esta_etapa escondido';
 		div_nova.className = 'selecionado quadradinho';
 	}
-	
+
 function escondeApplet(qual) {
 
 		var div = document.getElementById('applet_' + qual);
-		
+
 		div.className = 'esta_etapa escondido';
 }
 
 
 function abre_popup(html)
-{ 
+{
 	var altura = document.viewport.getHeight();
 	var scroll = document.viewport.getScrollOffsets().top;
 	$('popup').show()
@@ -564,7 +564,7 @@ function abre_popup(html)
 		top: String(scroll+27)+'px'
 	});
 	if(html)
-		$('popup').innerHTML = html + '<a href="javascript:fecha_popup();" style="position: absolute; top: 5px; right: 10px;">Fechar</a>';	
+		$('popup').innerHTML = html + '<a href="javascript:fecha_popup();" style="position: absolute; top: 5px; right: 10px;">Fechar</a>';
 		$('fundo').show();
 		$('fundo').setStyle({
 		backgroundColor: 'RGB(0,0,0)',
@@ -582,17 +582,17 @@ function fecha_popup()
 }
 
 function DropMenu(targetpage,selected){
-				if (selected.options[selected.selectedIndex].value != ""){  
-					questao_a_responder = selected.options[selected.selectedIndex].value;			
+				if (selected.options[selected.selectedIndex].value != ""){
+					questao_a_responder = selected.options[selected.selectedIndex].value;
 					//eval(targetpage+ ".location='"+questao_a_responder+"' ");
 				}
 }
 
 
 /* Funcao generica que redireciona para uma determinada parte.
- * @param {Object} onde	 = nome do arquivo 
+ * @param {Object} onde	 = nome do arquivo
  */
- 
+
 function redirecionaPara(onde) {
 	location.href= onde;
 }
