@@ -47,11 +47,11 @@ function ggbOnInit(){
 	if (PosicaoAtual.Parte == 2) {
 		registerListeners_a1_p3();
 	}
-	if ( (PosicaoAtual.Atividade == 1) && (PosicaoAtual.Parte == 3) )
-	{
-		var posicao = {Parte: 3, Questao: 'parte4_q5', Item:0};
-		PegaQuestao(posicao).seleciona();
-	}
+	//if ( (PosicaoAtual.Atividade == 1) && (PosicaoAtual.Parte == 3) )
+	//{
+	//	var posicao = {Parte: 3, Questao: 'parte4_q5', Item:0};
+	//	PegaQuestao(posicao).seleciona();
+	//}
 
 	ggb_abriu = true;
 }
@@ -203,7 +203,7 @@ function selecionou_q_6_b(){
 }
 
 function selecionou_q_6_c(){
-	if (ggb_abriu == true){	
+	if (ggb_abriu == true){
 		if (P4_feita[2] == 1){
 			var applet = document.ggbApplet;
 			applet.setXML(minhaString[2]);
