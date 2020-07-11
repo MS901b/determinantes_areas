@@ -72,7 +72,7 @@ var Questoes =
 				{//C
 					tipo: 'input',
 					corrigir: corrige_q_6_c,
-					selecionada: selecionou_q_6_c,
+					//selecionada: selecionou_q_6_c,
 					depois: 'cm²',
 					antes: 'Área = ',
 					associado: true,
@@ -84,7 +84,7 @@ var Questoes =
 				{//B
 					tipo: 'input',
 					corrigir: corrige_q_6_b,
-					selecionada: selecionou_q_6_b,
+					//selecionada: selecionou_q_6_b,
 					depois: 'cm²',
 					antes: 'Área = ',
 					associado: true,
