@@ -186,7 +186,7 @@ Event.observe(window, 'load', function(){
 			}
 
 		});
-
+		
 		Event.observe('eixo1a', 'change', function(evento){
 			var applet = document.ggbApplet;
 			applet.setFixed("B", false);
@@ -225,7 +225,6 @@ Event.observe(window, 'load', function(){
 			Responder_applet_p4();
 			}
 		});
-
 
 	}
 

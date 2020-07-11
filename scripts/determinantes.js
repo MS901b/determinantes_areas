@@ -47,7 +47,20 @@ function ggbOnInit(){
 	if (PosicaoAtual.Parte == 2) {
 		registerListeners_a1_p3();
 	}
+if ( (PosicaoAtual.Atividade == 1) && (PosicaoAtual.Parte == 3) )
+	{
+		// Inicializa todas strings para conter o estado inicial do applet.
+		minhaString[0] = minhaString[1] = minhaString[2] = minhaString[3] = minhaString[4] = document.ggbApplet.getXML();
+		$('eixo1a').value = 0;
+		$('eixo1c').value = 0;
+		$('eixo1d').value = 0;
+		
+		// Seleciona a primeira questao.
+		//var posicao = {Parte: 3, Questao: 'parte4_q5', Item:0};
+		//PegaQuestao(posicao).seleciona();
 
+
+	}
 	ggb_abriu = true;
 }
 
@@ -145,119 +158,65 @@ meu_seletor3.push(false);
 meu_seletor3.push(false);
 
 
-//Matias
-var primeira_selecao = true;
-var num_init_retries= 0;
-// Super gambiarra. Se for a primeira seleção, mostra o applet e depois executa o código que estava aqui
-// Se não for, só executa o código... sim está duplicado.
 
 function selecionou_q_6_a(){
 	// Quando a pagina abre, ele seleciona esta questao!
-	if (ggb_abriu == true){
-			if (P4_feita[0] == 1){
-			var applet = document.ggbApplet;
-				applet.setXML(minhaString[0]);
-				$('eixo1a').value = applet.getXcoord('B');
-				$('eixo1c').value = applet.getXcoord('C');
-				$('eixo1d').value = applet.getYcoord('C');
-			}else{
-				$('eixo1a').value = 0;
-				$('eixo1c').value = 0;
-				$('eixo1d').value = 0;
-				limpar_applet();
-				P4_feita[0] = 1;
-				// Matias
-				var applet = document.ggbApplet;
-
-			}
-			minhaString[0] = applet.getXML();
+	if (ggb_abriu == true) 
+	{
+		var applet = document.ggbApplet;
+		applet.setXML(minhaString[0]);
+		$('eixo1a').value = applet.getXcoord('B');
+		$('eixo1c').value = applet.getXcoord('C');
+		$('eixo1d').value = applet.getYcoord('C');
 	}
-			questao_a_responder = 'p1_q6_a';
+	questao_a_responder = 'p1_q6_a';
 }
 
 function selecionou_q_6_b(){
-	if (P4_feita[1] == 1){
+	if (ggb_abriu == true) 
+	{
 		var applet = document.ggbApplet;
 		applet.setXML(minhaString[1]);
 		$('eixo1a').value = applet.getXcoord('B');
 		$('eixo1c').value = applet.getXcoord('C');
 		$('eixo1d').value = applet.getYcoord('C');
-	}else{
-		$('eixo1a').value = 0;
-		$('eixo1c').value = 0;
-		$('eixo1d').value = 0;
-		limpar_applet();
-		P4_feita[1] = 1;
-
-		// Matias
-		var applet = document.ggbApplet;
-		minhaString[1] = applet.getXML();
-
 	}
 	questao_a_responder = 'p1_q6_b';
 }
 
 function selecionou_q_6_c(){
-	if (ggb_abriu == true){
-		if (P4_feita[2] == 1){
-			var applet = document.ggbApplet;
-			applet.setXML(minhaString[2]);
-			$('eixo1a').value = applet.getXcoord('B');
-			$('eixo1c').value = applet.getXcoord('C');
-			$('eixo1d').value = applet.getYcoord('C');
-		}else{
-			$('eixo1a').value = 0;
-			$('eixo1c').value = 0;
-			$('eixo1d').value = 0;
-			limpar_applet();
-			P4_feita[2] = 1;
-			// Matias
-			var applet = document.ggbApplet;
-			minhaString[2] = applet.getXML();
-		}
-		questao_a_responder = 'p1_q6_c';
+	if (ggb_abriu == true)
+	{
+		var applet = document.ggbApplet;
+		applet.setXML(minhaString[2]);
+		$('eixo1a').value = applet.getXcoord('B');
+		$('eixo1c').value = applet.getXcoord('C');
+		$('eixo1d').value = applet.getYcoord('C');
 	}
+	questao_a_responder = 'p1_q6_c';
+	
 }
 
 function selecionou_q_7_a(){
-	if (P4_feita[3] == 1){
+	if (ggb_abriu == true)
+	{
 		var applet = document.ggbApplet;
 		applet.setXML(minhaString[3]);
 		$('eixo1a').value = applet.getXcoord('B');
 		$('eixo1c').value = applet.getXcoord('C');
 		$('eixo1d').value = applet.getYcoord('C');
-	}else{
-		$('eixo1a').value = 0;
-		$('eixo1c').value = 0;
-		$('eixo1d').value = 0;
-		limpar_applet();
-		P4_feita[3] = 1;
-
-				// Matias
-				var applet = document.ggbApplet;
-				minhaString[3] = applet.getXML();
-
 	}
 	questao_a_responder = 'p1_q7_a';
 }
 
 function selecionou_q_7_b(){
-	if (P4_feita[4] == 1){
+	if (ggb_abriu == true)
+	{
 		var applet = document.ggbApplet;
 		applet.setXML(minhaString[4]);
 		$('eixo1a').value = applet.getXcoord('B');
 		$('eixo1c').value = applet.getXcoord('C');
 		$('eixo1d').value = applet.getYcoord('C');
-	}else{
-		$('eixo1a').value = 0;
-		$('eixo1c').value = 0;
-		$('eixo1d').value = 0;
-		limpar_applet();
-		P4_feita[4] = 1;
-			// Matias
-			var applet = document.ggbApplet;
-			minhaString[4] = applet.getXML();
-
 	}
 	questao_a_responder = 'p1_q7_b';
 }
@@ -339,7 +298,6 @@ function Responder_applet_p4(){
 	var aa = ($('eixo1a').value);
 	var bb = ($('eixo1c').value);
 	var cc = ($('eixo1d').value);
-
 	if ((aa != 0)||(bb != 0)||(cc != 0)){
 		if(questao_a_responder != 0){
 			var applet = document.ggbApplet;
