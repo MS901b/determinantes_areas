@@ -56,7 +56,7 @@ var Questoes =
 					depois: 'cm²',
 					enunciado: 'Observando o retângulo obtido na questão anterior, responda: Qual a área do paralelogramo?',
 					msgErro: 'A área de um retângulo é: base * altura.',
-					msgAjuda: 'Não é necessário digitar a unidade de medida. Observe bem o número de triângulos.'
+					msgAjuda: 'Não é necessário digitar a unidade de medida. Observe bem o número de triângulos (de lados medindo 2cm).'
 				}
 			]
 		}
@@ -78,7 +78,7 @@ var Questoes =
 					associado: true,
 					enunciado: 'Um quadrado (qualquer quadrado é um retângulo).',
 					depois_enunciado: '<div style="display:block; margin-left: 30px;  margin-top:10px" id="p1_q6_cspammatriz"></div><div class="limpador"></div>',
-					msgErro: 'A área de um retângulo é: base * altura',
+					msgErro: 'A área de um retângulo é: base * altura. Lembre-se que o quadrado possui lados com a mesma medida.',
 					msgAjuda: 'Não é necessário por unidade de medida.'
 				},
 				{//B
@@ -90,7 +90,7 @@ var Questoes =
 					associado: true,
 					enunciado: 'Um retângulo (qualquer retângulo é um paralelogramo).',
 					depois_enunciado: '<div id="p1_q6_bspammatriz" style="margin-left: 30px; margin-top:10px"></div><div class="limpador"></div>',
-					msgErro: 'A área de um retângulo é: base * altura',
+					msgErro: 'A área de um retângulo é: base * altura. Lembre-se que o quadrado possui lados com a mesma medida.',
 					msgAjuda: 'Não é necessário por unidade de medida.'
 				},
 				{//A
@@ -102,7 +102,7 @@ var Questoes =
 					associado: true,
 					enunciado: 'Um paralelogramo qualquer.',
 					depois_enunciado: '<div id="p1_q6_aspammatriz" style="margin-left: 30px;  margin-top:10px"></div><div class="limpador"></div>',
-					msgErro: 'A área de um retângulo é: base * altura',
+					msgErro: 'A área de um retângulo é: base * altura. Lembre-se que o quadrado possui lados com a mesma medida.',
 					msgAjuda: 'Não é necessário por unidade de medida.'
 				}
 			]
@@ -167,7 +167,7 @@ var Questoes =
 					dados:	[
 							 [{tipo: 'normal', label:'Det(A) = '}]
 							],
-					msgErro: 'A Determinante de uma matriz 2x2: é a*d – c*b'
+					msgErro: 'O determinante de uma matriz 2x2: é a*d – c*b'
 				},
 				{//B
 					tipo: 'multiplo_input',
@@ -179,7 +179,7 @@ var Questoes =
 					dados:	[
 							 [{tipo: 'normal', label:'Det(B) = '}]
 							],
-					msgErro: 'A Determinante de uma matriz 2x2: é a*d – c*b'
+					msgErro: 'O determinante de uma matriz 2x2: é a*d – c*b'
 				},
 				{//C
 					tipo: 'multiplo_input',
@@ -191,7 +191,7 @@ var Questoes =
 					dados:	[
 							 [{tipo: 'normal', label:'Det(C) = '}]
 							],
-					msgErro: 'A Determinante de uma matriz 2x2: é a*d – c*b'
+					msgErro: 'O determinante de uma matriz 2x2: é a*d – c*b'
 				},
 				{//D
 					tipo: 'multiplo_input',
@@ -203,7 +203,7 @@ var Questoes =
 					dados:	[
 							 [{tipo: 'normal', label:'Det(D) = '}]
 							],
-					msgErro: 'A Determinante de uma matriz 2x2: é a*d – c*b'
+					msgErro: 'O determinante de uma matriz 2x2: é a*d – c*b'
 				},
 				{//E
 					tipo: 'multiplo_input',
@@ -215,7 +215,7 @@ var Questoes =
 					dados:	[
 							 [{tipo: 'normal', label:'Det(E) = '}]
 							],
-					msgErro: 'A Determinante de uma matriz 2x2: é a*d – c*b'
+					msgErro: 'O determinante de uma matriz 2x2: é a*d – c*b'
 				}
 			]
 		}

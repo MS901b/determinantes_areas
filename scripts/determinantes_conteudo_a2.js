@@ -1,5 +1,5 @@
 ﻿/*
-	Padronização do ID: 
+	Padronização do ID:
 		- [['p/parte','q/questao','/item'],'_'] vai gerar um id do tipo p1_q2_1
 		- [['p/parte','q/questao','/itemletra'],'_'] vai gerar um id do tipo p1_q2_a
 	Palavras-chave: questao, parte, item, itemletra, subitem
@@ -13,23 +13,23 @@ var nomeSoft = 'determinantes';
 
 /*
 	Questoes
-	
+
 	Aqui ficam concentrados todos os conteudos das questões da atividade!
 	Veja que está separado por Parte/Questão/Item
-	
+
 	ATENÇÃO: Cada tipo possui um formato de entrada característico.
 */
 
-var Questoes = 
+var Questoes =
 [
 	{//Parte 2
 		parte1_q1: //Questão 1
-		{	
+		{
 			enunciadoGeral: 'Considerando a matriz acima',
-			itens: 
-			[	
+			itens:
+			[
 				{//A
-					tipo: 'matriz', 
+					tipo: 'matriz',
 					corrigir: corrige_a2_p1_q_1_a,
 					esperando: false,
 					associado: false,
@@ -48,17 +48,17 @@ var Questoes =
 					associado: false,
 					enunciado: 'Observando o quadro ao lado, responda: quantas vezes a área do paralelogramo obtido é maior do que a do original?',
 					msgAjuda: 'Responda usando apenas números',
-					msgErro: 'A resposta está incorreta.'
+					msgErro: 'Observe no gráfico ao lado a alteração ocorrida pela multiplicação por 2.'
 				}
 			]
 		},
 		parte1_q2: //Questão 2
 		{
 			enunciadoGeral: 'Com base na matriz da questão anterior',
-			itens: 
+			itens:
 			[
 				{//A
-					tipo: 'matriz', 
+					tipo: 'matriz',
 					corrigir: corrige_a2_p1_q_2_a,
 					esperando: false,
 					associado: false,
@@ -83,10 +83,10 @@ var Questoes =
 		},
 		parte1_q3: //Questão 2
 		{
-			itens: 
+			itens:
 			[
 				{//A
-					
+
 					tipo: 'multipla_escolha',
 					corrigir: corrige_a2_p3_q_1,
 					enunciado: 'Se multiplicássemos as duas linhas da matriz por 3, quantas vezes a área do paralelogramo obtido seria maior do que a do original?',
