@@ -39,7 +39,7 @@ var Questoes =
 							 [{tipo: 'texto', value: 0},{tipo: 'texto', value: 0}]
 							],
 					msgErro: 'A multiplicação está incorreta.',
-					msgAjuda: 'Multiplique a11 e a12 por 2.'
+					msgAjuda: 'Multiplique a<sub>11</sub> e a<sub>12</sub> por 2.'
 				},
 				{//B
 					tipo: 'input',
