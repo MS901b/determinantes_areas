@@ -2,21 +2,21 @@
 var IdPadrao = [['parte/parte','q/questao','/itemletra','/subitem'],'_'];
 var Partes = ['1'];
 var nomeSoft = 'determinantes';
-var Questoes = 
+var Questoes =
 [
 	{//Parte 2
 		parte1_q1: //Questão 2
 		{
-			itens: 
+			itens:
 			[
 				{//A
 					//C
-					tipo: 'matriz', 
+					tipo: 'matriz',
 					corrigir: corrige_a2_p2_q_1,
 					esperando: false,
 					dependente: true,
 					associado: false,
-					msgAjuda: 'Some a11 com a21 e a12 com a22',
+					msgAjuda: 'Some a11 com a<sub>21</sub> e a<sub>12</sub> com a<sub>22</sub>',
 					msgErro: 'As somas não estão corretas',
 					enunciado: 'Tomando como referência a matriz anterior, some a segunda linha à primeira e preencha os resultados na matriz abaixo.',
 					dados:	[
@@ -28,16 +28,16 @@ var Questoes =
 		},
 		parte1_q2: //Questão 2
 		{
-			itens: 
+			itens:
 			[
 				{//A
 					//C
-					tipo: 'matriz', 
+					tipo: 'matriz',
 					corrigir: corrige_a2_p2_q_2,
 					esperando: false,
 					dependente: true,
 					associado: false,
-					msgAjuda: 'Some a11 com a21 e a12 com a22',
+					msgAjuda: 'Some a<sub>11</sub> com a<sub>21</sub> e a<sub>12</sub> com a<sub>22</sub>',
 					msgErro: 'As somas não estão corretas',
 					enunciado: 'Tomando como referência a matriz original, some a primeira linha à segunda e preencha os resultados na matriz abaixo.',
 					dados:	[
